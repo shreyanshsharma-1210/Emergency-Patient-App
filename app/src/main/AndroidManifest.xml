@@ -14,7 +14,7 @@
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <!-- Android 14+: must explicitly state foreground service type -->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"/>
 
     <!-- Network -->
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -46,9 +46,9 @@
 
         <!-- ── Activities ──────────────────────────────────────────────────── -->
 
-        <!-- Entry point: decides Onboarding or Main -->
+        <!-- Entry point: Progressive Onboarding Funnel -> Dashboard -->
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".activities.Step1BasicInfoActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -56,12 +56,28 @@
             </intent-filter>
         </activity>
 
-        <!-- Shown once on first install -->
         <activity
-            android:name=".activities.OnboardingActivity"
+            android:name=".activities.Step1bEmergencyContactsActivity"
             android:exported="false"/>
 
-        <!-- Medical ID & SOS launcher — appears above keyguard via notification tap -->
+        <activity
+            android:name=".activities.Step2TriageQuizActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".activities.Step3VerifyResumeActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".activities.EditProfileActivity"
+            android:exported="false"/>
+
+        <!-- The main app dashboard (formerly MainActivity) -->
+        <activity
+            android:name=".activities.DashboardActivity"
+            android:exported="false"/>
+
+        <!-- Medical ID &amp; SOS launcher — appears above keyguard via notification tap -->
         <activity
             android:name=".activities.QuickAccessActivity"
             android:showOnLockScreen="true"
@@ -92,8 +108,11 @@
         <!-- Persistent foreground service — listens for screen-off events -->
         <service
             android:name=".services.EmergencyBackgroundService"
-            android:foregroundServiceType="location"
-            android:exported="false"/>
+            android:foregroundServiceType="specialUse"
+            android:exported="false">
+            <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                      android:value="Provides quick access to Medical ID and SOS from the lockscreen." />
+        </service>
 
         <!-- FCM push notification handler -->
         <service

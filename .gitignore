@@ -1,5 +1,8 @@
 *.iml
 .gradle
+# Do NOT ignore gradle/wrapper — it must be committed
+!/gradle/wrapper/gradle-wrapper.jar
+!/gradle/wrapper/gradle-wrapper.properties
 /local.properties
 /.idea/caches
 /.idea/libraries

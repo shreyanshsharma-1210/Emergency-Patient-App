@@ -6,10 +6,13 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import android.content.Context;
+
 /**
  * AuthInterceptor — OkHttp interceptor that attaches JWT to every outgoing request.
  * Added to the Retrofit OkHttpClient in ApiClient.
  */
+public class AuthInterceptor implements Interceptor {
     private final Context context;
 
     public AuthInterceptor(Context context) {

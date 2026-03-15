@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_background">
+
+    <!-- Top Navigation Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/color_background"
+        android:paddingHorizontal="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Medical ID"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/color_text_primary"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Patient Profile Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/color_surface"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:gravity="center_horizontal">
+
+                    <!-- Avatar with Badge Overlay -->
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/iv_avatar_med_id"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:src="@android:drawable/ic_menu_myplaces"
+                            android:scaleType="centerCrop"
+                            android:background="@color/color_condition_chip_bg"
+                            android:padding="12dp"
+                            app:shapeAppearanceOverlay="@style/CircleAppearance"/>
+
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="bottom|end"
+                            android:layout_marginEnd="-4dp"
+                            android:layout_marginBottom="-4dp"
+                            android:src="@drawable/ic_avatar_badge"/>
+                    </FrameLayout>
+
+                    <!-- Patient Name -->
+                    <TextView
+                        android:id="@+id/tv_patient_name_med_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Benjamin Miller"
+                        android:textSize="26sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/color_text_primary"
+                        android:layout_marginTop="12dp"/>
+
+                    <!-- Age -->
+                    <TextView
+                        android:id="@+id/tv_patient_age_med_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="32 years old"
+                        android:textSize="15sp"
+                        android:textColor="@color/color_text_secondary"
+                        android:layout_marginTop="4dp"/>
+
+                    <!-- Condition Chip -->
+                    <TextView
+                        android:id="@+id/tv_condition_chip_med_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Type 1 Diabetes"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/color_primary_orange"
+                        android:background="@drawable/bg_condition_chip"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="6dp"
+                        android:layout_marginTop="10dp"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Emergency QR Code Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/color_surface"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Header Row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Emergency QR Code"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/color_text_primary"/>
+
+                        <!-- Doctor Access Only badge -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:background="@color/color_doctor_badge_bg"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="6dp"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="🔒 DOCTOR ACCESS ONLY"
+                                android:textSize="10sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/color_primary_orange"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Teal QR container -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="12dp"
+                        app:cardBackgroundColor="@color/color_qr_bg_teal"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="12dp">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="4dp"
+                            app:cardBackgroundColor="@color/color_surface"
+                            android:layout_margin="16dp"
+                            android:layout_gravity="center">
+
+                            <ImageView
+                                android:id="@+id/iv_qr_code_med_id"
+                                android:layout_width="140dp"
+                                android:layout_height="140dp"
+                                android:scaleType="fitCenter"
+                                android:padding="12dp"
+                                android:contentDescription="Patient QR Code"/>
+
+                        </androidx.cardview.widget.CardView>
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Scan for Full Medical Profile"
+                        android:textSize="13sp"
+                        android:textColor="@color/color_text_secondary"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

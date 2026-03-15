@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@color/color_background">
+
+    <!-- Progress Indicator -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Step 2 of 3: Triage Quiz"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/color_primary_orange"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Question 1: Allergies -->
+            <LinearLayout style="@style/TriageQuestionContainer">
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_allergies"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Severe Allergies (e.g., Penicillin, Latex)"
+                    android:textSize="15sp"
+                    android:textColor="@color/color_text_primary"
+                    android:textStyle="bold"/>
+                <EditText
+                    android:id="@+id/et_allergies_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Please specify..."
+                    android:visibility="gone"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_condition_chip"
+                    android:padding="12dp"/>
+            </LinearLayout>
+
+            <!-- Question 2: Cardiovascular -->
+            <LinearLayout style="@style/TriageQuestionContainer">
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_cardio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cardiovascular Health (Heart issues, BP, thinners)"
+                    android:textSize="15sp"
+                    android:textColor="@color/color_text_primary"
+                    android:textStyle="bold"/>
+                <EditText
+                    android:id="@+id/et_cardio_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Please specify..."
+                    android:visibility="gone"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_condition_chip"
+                    android:padding="12dp"/>
+            </LinearLayout>
+
+            <!-- Question 3: Chronic Conditions -->
+            <LinearLayout style="@style/TriageQuestionContainer">
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_chronic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Chronic Conditions (e.g., Diabetes, Asthma)"
+                    android:textSize="15sp"
+                    android:textColor="@color/color_text_primary"
+                    android:textStyle="bold"/>
+                <EditText
+                    android:id="@+id/et_chronic_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Please specify..."
+                    android:visibility="gone"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_condition_chip"
+                    android:padding="12dp"/>
+            </LinearLayout>
+
+            <!-- Question 4: Implants -->
+            <LinearLayout style="@style/TriageQuestionContainer">
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_implants"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Implants &amp; Surgeries (Pacemaker, major surgeries)"
+                    android:textSize="15sp"
+                    android:textColor="@color/color_text_primary"
+                    android:textStyle="bold"/>
+                <EditText
+                    android:id="@+id/et_implants_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Please specify..."
+                    android:visibility="gone"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_condition_chip"
+                    android:padding="12dp"/>
+            </LinearLayout>
+
+            <!-- Question 5: Meds -->
+            <LinearLayout style="@style/TriageQuestionContainer">
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_meds"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Critical Daily Medications (Insulin, etc.)"
+                    android:textSize="15sp"
+                    android:textColor="@color/color_text_primary"
+                    android:textStyle="bold"/>
+                <EditText
+                    android:id="@+id/et_meds_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Please specify..."
+                    android:visibility="gone"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_condition_chip"
+                    android:padding="12dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/btn_back_step2"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:text="Back"
+            style="?android:attr/borderlessButtonStyle"
+            android:textColor="@color/color_text_secondary"/>
+
+        <Button
+            android:id="@+id/btn_next_step2"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="2"
+            android:text="Next -> Verify"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/color_primary_orange"/>
+    </LinearLayout>
+
+</LinearLayout>

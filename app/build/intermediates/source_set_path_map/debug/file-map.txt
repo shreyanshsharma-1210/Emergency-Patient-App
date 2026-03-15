@@ -1,0 +1,39 @@
+com.emergency.patient.app-lifecycle-livedata-core-2.5.1-0 C:\Users\sw\.gradle\caches\transforms-3\018747233f991d9ed151516fb730bed9\transformed\lifecycle-livedata-core-2.5.1\res
+com.emergency.patient.app-material-1.9.0-1 C:\Users\sw\.gradle\caches\transforms-3\0df41554be87b36d53643c5fc69ad571\transformed\material-1.9.0\res
+com.emergency.patient.app-lifecycle-process-2.4.1-2 C:\Users\sw\.gradle\caches\transforms-3\15857bc31101e7a31bffc7560a94f1de\transformed\lifecycle-process-2.4.1\res
+com.emergency.patient.app-core-ktx-1.9.0-3 C:\Users\sw\.gradle\caches\transforms-3\164b5f9beab449997a1a8185d3f7eebb\transformed\core-ktx-1.9.0\res
+com.emergency.patient.app-play-services-maps-18.1.0-4 C:\Users\sw\.gradle\caches\transforms-3\260eff7886868a93d7fcdd69b5c2afa3\transformed\play-services-maps-18.1.0\res
+com.emergency.patient.app-drawerlayout-1.1.1-5 C:\Users\sw\.gradle\caches\transforms-3\27af625190c631bf723273ccb383881f\transformed\drawerlayout-1.1.1\res
+com.emergency.patient.app-constraintlayout-2.1.4-6 C:\Users\sw\.gradle\caches\transforms-3\2fe6505fda41aea197b1e74931e732a9\transformed\constraintlayout-2.1.4\res
+com.emergency.patient.app-emoji2-1.2.0-7 C:\Users\sw\.gradle\caches\transforms-3\34af25e62f9424a12112066fa9a6236f\transformed\emoji2-1.2.0\res
+com.emergency.patient.app-activity-1.6.0-8 C:\Users\sw\.gradle\caches\transforms-3\44b6b2b9ea4dcb34958be881084a2983\transformed\activity-1.6.0\res
+com.emergency.patient.app-firebase-messaging-23.4.0-9 C:\Users\sw\.gradle\caches\transforms-3\517356e443594d01dab1d460f00dd535\transformed\firebase-messaging-23.4.0\res
+com.emergency.patient.app-play-services-basement-18.1.0-10 C:\Users\sw\.gradle\caches\transforms-3\5a3dc5603d691bc5b37b25c658cd3e55\transformed\play-services-basement-18.1.0\res
+com.emergency.patient.app-lifecycle-viewmodel-2.5.1-11 C:\Users\sw\.gradle\caches\transforms-3\5d3b8e6e84d9326d66cdafa9cfbc85b2\transformed\lifecycle-viewmodel-2.5.1\res
+com.emergency.patient.app-firebase-common-20.4.2-12 C:\Users\sw\.gradle\caches\transforms-3\64b676409f1dcf42ea2c63e3ab692a08\transformed\firebase-common-20.4.2\res
+com.emergency.patient.app-recyclerview-1.1.0-13 C:\Users\sw\.gradle\caches\transforms-3\67878fa60915a83d02d315b97231a751\transformed\recyclerview-1.1.0\res
+com.emergency.patient.app-appcompat-resources-1.6.1-14 C:\Users\sw\.gradle\caches\transforms-3\6c4f12f9fb70872ac52bdc45e8dd8f0c\transformed\appcompat-resources-1.6.1\res
+com.emergency.patient.app-lifecycle-viewmodel-savedstate-2.5.1-15 C:\Users\sw\.gradle\caches\transforms-3\6cd47a88f3033636a30bc92e3c47efb6\transformed\lifecycle-viewmodel-savedstate-2.5.1\res
+com.emergency.patient.app-appcompat-1.6.1-16 C:\Users\sw\.gradle\caches\transforms-3\731a674e239f34d76ecd3d5a852a9ad5\transformed\appcompat-1.6.1\res
+com.emergency.patient.app-play-services-base-18.1.0-17 C:\Users\sw\.gradle\caches\transforms-3\83e53f0578c69cbcb1a7e5b875f0f69e\transformed\play-services-base-18.1.0\res
+com.emergency.patient.app-viewpager2-1.0.0-18 C:\Users\sw\.gradle\caches\transforms-3\89d9be37cd74dce4e0bf5d68d2d63453\transformed\viewpager2-1.0.0\res
+com.emergency.patient.app-emoji2-views-helper-1.2.0-19 C:\Users\sw\.gradle\caches\transforms-3\8cf644b91c93883f5e5df3ee06570dad\transformed\emoji2-views-helper-1.2.0\res
+com.emergency.patient.app-coordinatorlayout-1.1.0-20 C:\Users\sw\.gradle\caches\transforms-3\97edcf3ffcde97ca5beb518b97266f9e\transformed\coordinatorlayout-1.1.0\res
+com.emergency.patient.app-fragment-1.3.6-21 C:\Users\sw\.gradle\caches\transforms-3\9f6349993d912cccdebe06fdaade23b5\transformed\fragment-1.3.6\res
+com.emergency.patient.app-savedstate-1.2.0-22 C:\Users\sw\.gradle\caches\transforms-3\9f82051945f577bddc9a5adcd3eab3bb\transformed\savedstate-1.2.0\res
+com.emergency.patient.app-startup-runtime-1.1.1-23 C:\Users\sw\.gradle\caches\transforms-3\ab08015fb98321e8ad5265194607fdeb\transformed\startup-runtime-1.1.1\res
+com.emergency.patient.app-core-1.9.0-24 C:\Users\sw\.gradle\caches\transforms-3\b65ad5a76bcb85fcb689395e524b401a\transformed\core-1.9.0\res
+com.emergency.patient.app-annotation-experimental-1.3.0-25 C:\Users\sw\.gradle\caches\transforms-3\c70e1218099cf7eed18faf448e275f73\transformed\annotation-experimental-1.3.0\res
+com.emergency.patient.app-transition-1.2.0-26 C:\Users\sw\.gradle\caches\transforms-3\dab13b6448c22f2a609b90fd98c9cd37\transformed\transition-1.2.0\res
+com.emergency.patient.app-lifecycle-runtime-2.5.1-27 C:\Users\sw\.gradle\caches\transforms-3\e3ef6e0198db65769b1b44590fb5a030\transformed\lifecycle-runtime-2.5.1\res
+com.emergency.patient.app-cardview-1.0.0-28 C:\Users\sw\.gradle\caches\transforms-3\ebc80e6cce66fb2c4e2ab7b1b51cdfec\transformed\cardview-1.0.0\res
+com.emergency.patient.app-security-crypto-1.1.0-alpha06-29 C:\Users\sw\.gradle\caches\transforms-3\f42ccdac5c3d9295b73bccceeb8d4874\transformed\security-crypto-1.1.0-alpha06\res
+com.emergency.patient.app-zxing-android-embedded-4.3.0-30 C:\Users\sw\.gradle\caches\transforms-3\f7a22f5bbbb41e4cc0192aef65ac41d3\transformed\zxing-android-embedded-4.3.0\res
+com.emergency.patient.app-pngs-31 D:\Project\Emergency Response - Patients App\app\build\generated\res\pngs\debug
+com.emergency.patient.app-res-32 D:\Project\Emergency Response - Patients App\app\build\generated\res\processDebugGoogleServices
+com.emergency.patient.app-resValues-33 D:\Project\Emergency Response - Patients App\app\build\generated\res\resValues\debug
+com.emergency.patient.app-packageDebugResources-34 D:\Project\Emergency Response - Patients App\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.emergency.patient.app-packageDebugResources-35 D:\Project\Emergency Response - Patients App\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.emergency.patient.app-merged_res-36 D:\Project\Emergency Response - Patients App\app\build\intermediates\merged_res\debug
+com.emergency.patient.app-debug-37 D:\Project\Emergency Response - Patients App\app\src\debug\res
+com.emergency.patient.app-main-38 D:\Project\Emergency Response - Patients App\app\src\main\res

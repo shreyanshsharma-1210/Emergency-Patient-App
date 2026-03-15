@@ -122,13 +122,16 @@ public class SocketManager {
             mainHandler.postDelayed(fallbackRunnable, ACK_TIMEOUT_MS);
 
             // ── Emit with ACK ─────────────────────────────────────────────
-            socket.emit("emergency_request", payload, (Object... ackArgs) -> {
-                mainHandler.post(() -> {
-                    ackReceived[0] = true;
-                    mainHandler.removeCallbacks(fallbackRunnable);
-                    Log.d(TAG, "Emergency ACK received ✅");
-                    if (callback != null) callback.onSuccess("WebSocket");
-                });
+            socket.emit("emergency_request", payload, new io.socket.client.Ack() {
+                @Override
+                public void call(Object... args) {
+                    mainHandler.post(() -> {
+                        ackReceived[0] = true;
+                        mainHandler.removeCallbacks(fallbackRunnable);
+                        Log.d(TAG, "Emergency ACK received ✅");
+                        if (callback != null) callback.onSuccess("WebSocket");
+                    });
+                }
             });
 
         } catch (Exception e) {

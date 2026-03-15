@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- RecyclerView row for the Live Status Feed -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingVertical="8dp">
+
+    <!-- State icon: ✅ ⏳ ◯ -->
+    <TextView
+        android:id="@+id/tv_feed_icon"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_marginEnd="12dp"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_feed_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#1A2B3C"/>
+
+        <TextView
+            android:id="@+id/tv_feed_timestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#8A96A3"
+            android:layout_marginTop="2dp"/>
+
+    </LinearLayout>
+</LinearLayout>

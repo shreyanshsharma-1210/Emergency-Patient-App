@@ -11,12 +11,7 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
-    <!-- Lock screen variant — dark status bar, no dim behind -->
-    <style name="Theme.EmergencyPatient.LockScreen" parent="Theme.EmergencyPatient">
-        <item name="android:windowBackground">#F5F5F7</item>
-        <item name="android:windowShowWallpaper">false</item>
-        <item name="android:windowDimAmount">0</item>
-    </style>
+
 
     <!-- Countdown overlay — full red background, white text -->
     <style name="Theme.EmergencyPatient.Countdown" parent="Theme.EmergencyPatient">

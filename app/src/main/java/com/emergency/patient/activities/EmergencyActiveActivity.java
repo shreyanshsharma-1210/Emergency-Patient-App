@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -60,6 +61,15 @@ public class EmergencyActiveActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Keep the emergency active screen visible over the lock screen
+        getWindow().addFlags(
+                android.view.WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+                android.view.WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD |
+                android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON |
+                android.view.WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
+        );
+
         setContentView(R.layout.activity_emergency_active);
 
         // Read dispatch extras

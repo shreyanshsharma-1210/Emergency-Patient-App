@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gcm_defaultSenderId" translatable="false">81004760175</string>
+    <string name="google_api_key" translatable="false">AIzaSyAHbP21sF_Xwti0zdd8jdHbTFkbcbMe16Y</string>
+    <string name="google_app_id" translatable="false">1:81004760175:android:24d1998ddb9a6f6128919a</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAHbP21sF_Xwti0zdd8jdHbTFkbcbMe16Y</string>
+    <string name="google_storage_bucket" translatable="false">emergency-response-patient.firebasestorage.app</string>
+    <string name="project_id" translatable="false">emergency-response-patient</string>
+</resources>

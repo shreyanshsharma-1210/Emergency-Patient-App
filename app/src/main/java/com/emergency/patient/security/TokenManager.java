@@ -93,6 +93,10 @@ public class TokenManager {
 
     // ─── Patient Profile ─────────────────────────────────────────────────────
 
+    public static void savePatientName(Context context, String name) {
+        getPrefs(context).edit().putString(KEY_PATIENT_NAME, name).apply();
+    }
+
     public static String getPatientName(Context context) {
         return getPrefs(context).getString(KEY_PATIENT_NAME, "");
     }
@@ -128,6 +132,30 @@ public class TokenManager {
 
     public static boolean isOnboardingComplete(Context context) {
         return getPrefs(context).getBoolean(KEY_ONBOARDING_COMPLETE, false);
+    }
+
+    public static void saveGender(Context context, String gender) {
+        getPrefs(context).edit().putString("gender", gender).apply();
+    }
+
+    public static String getGender(Context context) {
+        return getPrefs(context).getString("gender", "");
+    }
+
+    public static void saveBloodGroup(Context context, String bloodGroup) {
+        getPrefs(context).edit().putString("blood_group", bloodGroup).apply();
+    }
+
+    public static String getBloodGroup(Context context) {
+        return getPrefs(context).getString("blood_group", "");
+    }
+
+    public static void saveEmergencyContacts(Context context, String contactsJson) {
+        getPrefs(context).edit().putString("emergency_contacts", contactsJson).apply();
+    }
+
+    public static String getEmergencyContacts(Context context) {
+        return getPrefs(context).getString("emergency_contacts", "[]");
     }
 
     // ─── Clear ───────────────────────────────────────────────────────────────

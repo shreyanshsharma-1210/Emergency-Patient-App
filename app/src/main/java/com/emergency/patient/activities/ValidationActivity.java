@@ -163,8 +163,8 @@ public class ValidationActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Toast.makeText(ValidationActivity.this,
                             "Medical profile updated ✅", Toast.LENGTH_SHORT).show();
-                    // Return to main screen (Medical ID tab should now reflect updates)
-                    Intent intent = new Intent(ValidationActivity.this, MainActivity.class);
+                    // Return to main screen (Dashboard)
+                    Intent intent = new Intent(ValidationActivity.this, DashboardActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();

@@ -47,7 +47,8 @@ public class DocumentUploadActivity extends AppCompatActivity {
     private LinearLayout layoutIdle, layoutSelected, layoutUploading, layoutError;
     private ImageView ivDocumentPreview;
     private TextView tvDocumentName, tvUploadStatus, tvErrorMessage;
-    private Button btnPickDocument, btnUpload, btnRetry, btnCancel;
+    private Button btnPickDocument, btnUpload, btnRetry;
+    private View btnCancel;
     private ProgressBar progressUpload;
 
     // ─── State ────────────────────────────────────────────────────────────────

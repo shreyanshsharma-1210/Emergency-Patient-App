@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 meta-data#com.google.android.geo.API_KEY
-INJECTED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:140:9-142:46
+INJECTED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:144:9-146:46
 	android:value
 		INJECTED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml
-		ADDED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:142:13-44
+		ADDED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:146:13-44
 	android:name
-		ADDED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:141:13-58
+		ADDED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:145:13-58
 manifest
-ADDED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:2:1-151:12
-INJECTED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:2:1-151:12
-INJECTED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:2:1-151:12
-INJECTED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:2:1-151:12
+ADDED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:2:1-155:12
+INJECTED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:2:1-155:12
+INJECTED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:2:1-155:12
+INJECTED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:2:1-155:12
 MERGED from [com.google.android.material:material:1.9.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\e50bbf697fdb6da4111385633e30a4c7\transformed\material-1.9.0\AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\ASUS\.gradle\caches\8.13\transforms\bfd0416d32c1f36e9ed72c88ed401682\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\ASUS\.gradle\caches\8.13\transforms\35039bc92cff0b0c0be9d1cf6ac59bd2\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:17:1-22:12
@@ -160,8 +160,8 @@ ADDED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.
 	android:name
 		ADDED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:35:22-77
 application
-ADDED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:39:5-149:19
-INJECTED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:39:5-149:19
+ADDED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:39:5-153:19
+INJECTED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:39:5-153:19
 MERGED from [com.google.android.material:material:1.9.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\e50bbf697fdb6da4111385633e30a4c7\transformed\material-1.9.0\AndroidManifest.xml:24:5-20
 MERGED from [com.google.android.material:material:1.9.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\e50bbf697fdb6da4111385633e30a4c7\transformed\material-1.9.0\AndroidManifest.xml:24:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\ASUS\.gradle\caches\8.13\transforms\bfd0416d32c1f36e9ed72c88ed401682\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -344,12 +344,18 @@ action#android.intent.action.BOOT_COMPLETED
 ADDED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:133:17-78
 	android:name
 		ADDED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:133:25-76
-meta-data#com.google.firebase.messaging.default_notification_channel_id
-ADDED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:145:9-147:59
-	android:value
-		ADDED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:147:13-57
+receiver#com.emergency.patient.services.NotificationDismissReceiver
+ADDED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:137:9-139:39
+	android:exported
+		ADDED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:139:13-37
 	android:name
-		ADDED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:146:13-89
+		ADDED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:138:13-65
+meta-data#com.google.firebase.messaging.default_notification_channel_id
+ADDED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:149:9-151:59
+	android:value
+		ADDED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:151:13-57
+	android:name
+		ADDED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:150:13-89
 uses-sdk
 INJECTED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml

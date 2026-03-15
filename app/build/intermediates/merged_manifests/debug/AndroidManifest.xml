@@ -90,6 +90,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:testOnly="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
 
         <!-- ── Activities ──────────────────────────────────────────────────── -->
@@ -182,6 +183,9 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+        <receiver
+            android:name="com.emergency.patient.services.NotificationDismissReceiver"
+            android:exported="false" />
 
         <!-- ── Metadata ───────────────────────────────────────────────────── -->
 

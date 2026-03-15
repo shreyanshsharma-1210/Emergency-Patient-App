@@ -31,8 +31,11 @@ public class EmergencyBackgroundService extends Service {
 
     public static final String CHANNEL_ID = "emergency_service_channel";
     public static final int NOTIFICATION_ID = 1001;
+    private static final String ACTION_START_SERVICE = "com.emergency.patient.action.START_EMERGENCY_SERVICE";
+    private static final String ACTION_STOP_SERVICE = "com.emergency.patient.action.STOP_EMERGENCY_SERVICE";
 
     private BroadcastReceiver screenOffReceiver;
+    private boolean userRequestedStop = false;
 
     // ─── Lifecycle ───────────────────────────────────────────────────────────
 
@@ -48,6 +51,18 @@ public class EmergencyBackgroundService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        String action = intent != null ? intent.getAction() : null;
+        if (ACTION_STOP_SERVICE.equals(action)) {
+            if (isPersonalPersistenceMode(this)) {
+                android.util.Log.d("EmergencyService", "Ignoring stop request in personal persistence mode.");
+                return START_STICKY;
+            }
+            userRequestedStop = true;
+            stopForeground(STOP_FOREGROUND_REMOVE);
+            stopSelf();
+            return START_NOT_STICKY;
+        }
+
         if (!com.emergency.patient.security.TokenManager.isOnboardingComplete(this)) {
             android.util.Log.d("EmergencyService", "Onboarding not complete, stopping service.");
             stopSelf();
@@ -69,6 +84,21 @@ public class EmergencyBackgroundService extends Service {
     public void onDestroy() {
         super.onDestroy();
         android.util.Log.d("EmergencyService", "Service destroyed.");
+
+        // Restart unless user explicitly requested stop.
+        if ((isPersonalPersistenceMode(this) || !userRequestedStop)
+                && com.emergency.patient.security.TokenManager.isOnboardingComplete(this)) {
+            scheduleRestart(this);
+        }
+    }
+
+    @Override
+    public void onTaskRemoved(Intent rootIntent) {
+        super.onTaskRemoved(rootIntent);
+        if ((isPersonalPersistenceMode(this) || !userRequestedStop)
+                && com.emergency.patient.security.TokenManager.isOnboardingComplete(this)) {
+            scheduleRestart(this);
+        }
     }
 
     @Nullable
@@ -102,6 +132,13 @@ public class EmergencyBackgroundService extends Service {
                 this, 0, quickAccessIntent,
                 PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
 
+        Intent dismissIntent = new Intent(this, NotificationDismissReceiver.class);
+        PendingIntent dismissPendingIntent = PendingIntent.getBroadcast(
+                this,
+                3001,
+                dismissIntent,
+                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+
         Bitmap qrBitmap = null;
         String uuid = TokenManager.getUUID(this);
         if (uuid != null && !uuid.trim().isEmpty()) {
@@ -113,6 +150,7 @@ public class EmergencyBackgroundService extends Service {
                 .setContentText("Tap to open. Expand to show emergency QR.")
                 .setSmallIcon(R.drawable.ic_sos_cross)
                 .setContentIntent(pendingIntent)
+                .setDeleteIntent(dismissPendingIntent)
                 .setOngoing(true)
                 .setAutoCancel(false)
                 .setSilent(true)
@@ -145,6 +183,7 @@ public class EmergencyBackgroundService extends Service {
             return;
         }
         Intent intent = new Intent(context, EmergencyBackgroundService.class);
+        intent.setAction(ACTION_START_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             context.startForegroundService(intent);
         } else {
@@ -154,6 +193,55 @@ public class EmergencyBackgroundService extends Service {
 
     /** Stop the service (e.g. when the user fully logs out). */
     public static void stop(Context context) {
-        context.stopService(new Intent(context, EmergencyBackgroundService.class));
+        if (isPersonalPersistenceMode(context)) {
+            android.util.Log.d("EmergencyService", "Stop ignored in personal persistence mode.");
+            return;
+        }
+        Intent intent = new Intent(context, EmergencyBackgroundService.class);
+        intent.setAction(ACTION_STOP_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            context.startForegroundService(intent);
+        } else {
+            context.startService(intent);
+        }
+    }
+
+    private static void scheduleRestart(Context context) {
+        Intent restartIntent = new Intent(context, EmergencyBackgroundService.class);
+        restartIntent.setAction(ACTION_START_SERVICE);
+
+        PendingIntent restartPendingIntent = PendingIntent.getService(
+                context,
+                2001,
+                restartIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+
+        android.app.AlarmManager alarmManager = (android.app.AlarmManager) context
+                .getSystemService(Context.ALARM_SERVICE);
+        if (alarmManager != null) {
+            long triggerAtMillis = System.currentTimeMillis() + 1000;
+            try {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    alarmManager.setExactAndAllowWhileIdle(
+                            android.app.AlarmManager.RTC_WAKEUP,
+                            triggerAtMillis,
+                            restartPendingIntent);
+                } else {
+                    alarmManager.setExact(
+                            android.app.AlarmManager.RTC_WAKEUP,
+                            triggerAtMillis,
+                            restartPendingIntent);
+                }
+            } catch (SecurityException ignored) {
+                alarmManager.set(
+                        android.app.AlarmManager.RTC_WAKEUP,
+                        triggerAtMillis,
+                        restartPendingIntent);
+            }
+        }
+    }
+
+    private static boolean isPersonalPersistenceMode(Context context) {
+        return (context.getApplicationInfo().flags & android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE) != 0;
     }
 }

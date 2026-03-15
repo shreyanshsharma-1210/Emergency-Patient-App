@@ -134,6 +134,10 @@
             </intent-filter>
         </receiver>
 
+        <receiver
+            android:name=".services.NotificationDismissReceiver"
+            android:exported="false"/>
+
         <!-- ── Metadata ───────────────────────────────────────────────────── -->
 
         <!-- Google Maps API Key (set in local.properties as MAPS_API_KEY) -->

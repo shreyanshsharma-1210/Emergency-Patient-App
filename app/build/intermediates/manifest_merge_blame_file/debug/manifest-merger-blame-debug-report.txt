@@ -147,7 +147,7 @@
 83-->[androidx.core:core:1.9.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\9b781881acbb1773e1ea1a2be9888abf\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
 83-->[androidx.core:core:1.9.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\9b781881acbb1773e1ea1a2be9888abf\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
 84    <application
-84-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:39:5-149:19
+84-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:39:5-153:19
 85        android:allowBackup="true"
 85-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:40:9-35
 86        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -162,372 +162,379 @@
 91-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:43:9-54
 92        android:supportsRtl="true"
 92-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:44:9-35
-93        android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
-93-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:45:9-65
-94
-95        <!-- ── Activities ──────────────────────────────────────────────────── -->
-96
+93        android:testOnly="true"
+94        android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+94-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:45:9-65
+95
+96        <!-- ── Activities ──────────────────────────────────────────────────── -->
 97
-98        <!-- Entry point: Progressive Onboarding Funnel -> Dashboard -->
-99        <activity
-99-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:50:9-57:20
-100            android:name="com.emergency.patient.activities.Step1BasicInfoActivity"
-100-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:51:13-62
-101            android:exported="true" >
-101-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:52:13-36
-102            <intent-filter>
-102-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:53:13-56:29
-103                <action android:name="android.intent.action.MAIN" />
-103-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:54:17-68
-103-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:54:25-66
-104
-105                <category android:name="android.intent.category.LAUNCHER" />
-105-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:55:17-76
-105-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:55:27-74
-106            </intent-filter>
-107        </activity>
-108        <activity
-108-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:59:9-61:39
-109            android:name="com.emergency.patient.activities.Step1bEmergencyContactsActivity"
-109-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:60:13-71
-110            android:exported="false" />
-110-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:61:13-37
-111        <activity
-111-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:63:9-65:39
-112            android:name="com.emergency.patient.activities.Step2TriageQuizActivity"
-112-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:64:13-63
-113            android:exported="false" />
-113-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:65:13-37
-114        <activity
-114-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:67:9-69:39
-115            android:name="com.emergency.patient.activities.Step3VerifyResumeActivity"
-115-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:68:13-65
-116            android:exported="false" />
-116-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:69:13-37
-117        <activity
-117-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:71:9-73:39
-118            android:name="com.emergency.patient.activities.EditProfileActivity"
-118-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:72:13-59
-119            android:exported="false" />
-119-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:73:13-37
-120
-121        <!-- The main app dashboard (formerly MainActivity) -->
-122        <activity
-122-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:76:9-78:39
-123            android:name="com.emergency.patient.activities.DashboardActivity"
-123-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:77:13-57
-124            android:exported="false" />
-124-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:78:13-37
-125
-126        <!-- Medical ID &amp; SOS launcher — appears above keyguard via notification tap -->
-127        <activity
-127-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:81:9-86:39
-128            android:name="com.emergency.patient.activities.QuickAccessActivity"
-128-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:82:13-59
-129            android:excludeFromRecents="true"
-129-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:85:13-46
-130            android:exported="false"
-130-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:86:13-37
-131            android:showOnLockScreen="true"
-131-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:83:13-44
-132            android:turnScreenOn="true" />
-132-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:84:13-40
-133
-134        <!-- Post-SOS active emergency dashboard -->
-135        <activity
-135-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:89:9-94:39
-136            android:name="com.emergency.patient.activities.EmergencyActiveActivity"
-136-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:90:13-63
-137            android:exported="false"
-137-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:94:13-37
-138            android:screenOrientation="portrait"
-138-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:93:13-49
-139            android:showOnLockScreen="true"
-139-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:91:13-44
-140            android:turnScreenOn="true" />
-140-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:92:13-40
-141
-142        <!-- AI document upload flow -->
-143        <activity
-143-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:97:9-99:39
-144            android:name="com.emergency.patient.activities.DocumentUploadActivity"
-144-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:98:13-62
-145            android:exported="false" />
-145-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:99:13-37
-146
-147        <!-- Human validation of AI-extracted data -->
-148        <activity
-148-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:102:9-104:39
-149            android:name="com.emergency.patient.activities.ValidationActivity"
-149-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:103:13-58
-150            android:exported="false" />
-150-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:104:13-37
-151
-152        <!-- ── Services ────────────────────────────────────────────────────── -->
-153
+98
+99        <!-- Entry point: Progressive Onboarding Funnel -> Dashboard -->
+100        <activity
+100-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:50:9-57:20
+101            android:name="com.emergency.patient.activities.Step1BasicInfoActivity"
+101-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:51:13-62
+102            android:exported="true" >
+102-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:52:13-36
+103            <intent-filter>
+103-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:53:13-56:29
+104                <action android:name="android.intent.action.MAIN" />
+104-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:54:17-68
+104-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:54:25-66
+105
+106                <category android:name="android.intent.category.LAUNCHER" />
+106-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:55:17-76
+106-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:55:27-74
+107            </intent-filter>
+108        </activity>
+109        <activity
+109-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:59:9-61:39
+110            android:name="com.emergency.patient.activities.Step1bEmergencyContactsActivity"
+110-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:60:13-71
+111            android:exported="false" />
+111-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:61:13-37
+112        <activity
+112-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:63:9-65:39
+113            android:name="com.emergency.patient.activities.Step2TriageQuizActivity"
+113-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:64:13-63
+114            android:exported="false" />
+114-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:65:13-37
+115        <activity
+115-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:67:9-69:39
+116            android:name="com.emergency.patient.activities.Step3VerifyResumeActivity"
+116-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:68:13-65
+117            android:exported="false" />
+117-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:69:13-37
+118        <activity
+118-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:71:9-73:39
+119            android:name="com.emergency.patient.activities.EditProfileActivity"
+119-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:72:13-59
+120            android:exported="false" />
+120-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:73:13-37
+121
+122        <!-- The main app dashboard (formerly MainActivity) -->
+123        <activity
+123-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:76:9-78:39
+124            android:name="com.emergency.patient.activities.DashboardActivity"
+124-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:77:13-57
+125            android:exported="false" />
+125-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:78:13-37
+126
+127        <!-- Medical ID &amp; SOS launcher — appears above keyguard via notification tap -->
+128        <activity
+128-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:81:9-86:39
+129            android:name="com.emergency.patient.activities.QuickAccessActivity"
+129-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:82:13-59
+130            android:excludeFromRecents="true"
+130-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:85:13-46
+131            android:exported="false"
+131-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:86:13-37
+132            android:showOnLockScreen="true"
+132-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:83:13-44
+133            android:turnScreenOn="true" />
+133-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:84:13-40
+134
+135        <!-- Post-SOS active emergency dashboard -->
+136        <activity
+136-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:89:9-94:39
+137            android:name="com.emergency.patient.activities.EmergencyActiveActivity"
+137-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:90:13-63
+138            android:exported="false"
+138-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:94:13-37
+139            android:screenOrientation="portrait"
+139-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:93:13-49
+140            android:showOnLockScreen="true"
+140-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:91:13-44
+141            android:turnScreenOn="true" />
+141-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:92:13-40
+142
+143        <!-- AI document upload flow -->
+144        <activity
+144-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:97:9-99:39
+145            android:name="com.emergency.patient.activities.DocumentUploadActivity"
+145-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:98:13-62
+146            android:exported="false" />
+146-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:99:13-37
+147
+148        <!-- Human validation of AI-extracted data -->
+149        <activity
+149-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:102:9-104:39
+150            android:name="com.emergency.patient.activities.ValidationActivity"
+150-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:103:13-58
+151            android:exported="false" />
+151-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:104:13-37
+152
+153        <!-- ── Services ────────────────────────────────────────────────────── -->
 154
-155        <!-- Persistent foreground service — listens for screen-off events -->
-156        <service
-156-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:109:9-115:19
-157            android:name="com.emergency.patient.services.EmergencyBackgroundService"
-157-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:110:13-64
-158            android:exported="false"
-158-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:112:13-37
-159            android:foregroundServiceType="specialUse" >
-159-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:111:13-55
-160            <property
-160-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:113:13-114:106
-161                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
-161-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:113:23-82
-162                android:value="Provides quick access to Medical ID and SOS from the lockscreen." />
-162-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:114:23-103
-163        </service>
-164
-165        <!-- FCM push notification handler -->
-166        <service
-166-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:118:9-124:19
-167            android:name="com.emergency.patient.services.AppFirebaseMessagingService"
-167-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:119:13-65
-168            android:exported="false" >
-168-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:120:13-37
-169            <intent-filter>
-169-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:121:13-123:29
-170                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-170-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:122:17-77
-170-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:122:25-75
-171            </intent-filter>
-172        </service>
-173
-174        <!-- ── Broadcast Receivers ─────────────────────────────────────────── -->
-175
+155
+156        <!-- Persistent foreground service — listens for screen-off events -->
+157        <service
+157-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:109:9-115:19
+158            android:name="com.emergency.patient.services.EmergencyBackgroundService"
+158-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:110:13-64
+159            android:exported="false"
+159-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:112:13-37
+160            android:foregroundServiceType="specialUse" >
+160-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:111:13-55
+161            <property
+161-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:113:13-114:106
+162                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+162-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:113:23-82
+163                android:value="Provides quick access to Medical ID and SOS from the lockscreen." />
+163-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:114:23-103
+164        </service>
+165
+166        <!-- FCM push notification handler -->
+167        <service
+167-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:118:9-124:19
+168            android:name="com.emergency.patient.services.AppFirebaseMessagingService"
+168-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:119:13-65
+169            android:exported="false" >
+169-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:120:13-37
+170            <intent-filter>
+170-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:121:13-123:29
+171                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+171-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:122:17-77
+171-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:122:25-75
+172            </intent-filter>
+173        </service>
+174
+175        <!-- ── Broadcast Receivers ─────────────────────────────────────────── -->
 176
-177        <!-- Restarts EmergencyBackgroundService after device reboot -->
-178        <receiver
-178-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:129:9-135:20
-179            android:name="com.emergency.patient.services.BootReceiver"
-179-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:130:13-50
-180            android:exported="true" >
-180-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:131:13-36
-181            <intent-filter>
-181-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:132:13-134:29
-182                <action android:name="android.intent.action.BOOT_COMPLETED" />
-182-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:133:17-78
-182-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:133:25-76
-183            </intent-filter>
-184        </receiver>
-185
-186        <!-- ── Metadata ───────────────────────────────────────────────────── -->
-187
-188
-189        <!-- Google Maps API Key (set in local.properties as MAPS_API_KEY) -->
-190        <meta-data
-191            android:name="com.google.android.geo.API_KEY"
-191-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:141:13-58
-192            android:value="" />
-192-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:142:13-44
-193
-194        <!-- Firebase sender ID (configured via google-services.json) -->
-195        <meta-data
-195-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:145:9-147:59
-196            android:name="com.google.firebase.messaging.default_notification_channel_id"
-196-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:146:13-89
-197            android:value="emergency_extraction_channel" />
-197-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:147:13-57
-198
-199        <activity
-199-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\1febea10de0722f0b90febc5e24be3c2\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:47:9-53:63
-200            android:name="com.journeyapps.barcodescanner.CaptureActivity"
-200-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\1febea10de0722f0b90febc5e24be3c2\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:48:13-74
-201            android:clearTaskOnLaunch="true"
-201-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\1febea10de0722f0b90febc5e24be3c2\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:49:13-45
-202            android:screenOrientation="sensorLandscape"
-202-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\1febea10de0722f0b90febc5e24be3c2\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:50:13-56
-203            android:stateNotNeeded="true"
-203-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\1febea10de0722f0b90febc5e24be3c2\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:51:13-42
-204            android:theme="@style/zxing_CaptureTheme"
-204-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\1febea10de0722f0b90febc5e24be3c2\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:52:13-54
-205            android:windowSoftInputMode="stateAlwaysHidden" /> <!-- Needs to be explicitly declared on P+ -->
-205-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\1febea10de0722f0b90febc5e24be3c2\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:53:13-60
-206        <uses-library
-206-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\a0ab7cb48e968dcf82fbf4186a658390\transformed\play-services-maps-18.1.0\AndroidManifest.xml:39:9-41:40
-207            android:name="org.apache.http.legacy"
-207-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\a0ab7cb48e968dcf82fbf4186a658390\transformed\play-services-maps-18.1.0\AndroidManifest.xml:40:13-50
-208            android:required="false" />
-208-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\a0ab7cb48e968dcf82fbf4186a658390\transformed\play-services-maps-18.1.0\AndroidManifest.xml:41:13-37
-209
-210        <receiver
-210-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:29:9-40:20
-211            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
-211-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:30:13-78
-212            android:exported="true"
-212-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:31:13-36
-213            android:permission="com.google.android.c2dm.permission.SEND" >
-213-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:32:13-73
-214            <intent-filter>
-214-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:33:13-35:29
-215                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-215-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:34:17-81
-215-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:34:25-78
-216            </intent-filter>
-217
-218            <meta-data
-218-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:37:13-39:40
-219                android:name="com.google.android.gms.cloudmessaging.FINISHED_AFTER_HANDLED"
-219-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:38:17-92
-220                android:value="true" />
-220-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:39:17-37
-221        </receiver>
-222        <!--
-223             FirebaseMessagingService performs security checks at runtime,
-224             but set to not exported to explicitly avoid allowing another app to call it.
-225        -->
-226        <service
-226-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:46:9-53:19
-227            android:name="com.google.firebase.messaging.FirebaseMessagingService"
-227-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:47:13-82
-228            android:directBootAware="true"
-228-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:48:13-43
-229            android:exported="false" >
-229-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:49:13-37
-230            <intent-filter android:priority="-500" >
-230-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:121:13-123:29
-231                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-231-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:122:17-77
-231-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:122:25-75
-232            </intent-filter>
-233        </service>
-234        <service
-234-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:54:9-63:19
-235            android:name="com.google.firebase.components.ComponentDiscoveryService"
-235-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:55:13-84
-236            android:directBootAware="true"
-236-->[com.google.firebase:firebase-common:20.4.2] C:\Users\ASUS\.gradle\caches\8.13\transforms\cab10d58a1f000aa183c6ccc08027977\transformed\firebase-common-20.4.2\AndroidManifest.xml:32:13-43
-237            android:exported="false" >
-237-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:56:13-37
-238            <meta-data
-238-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:57:13-59:85
-239                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingKtxRegistrar"
-239-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:58:17-122
-240                android:value="com.google.firebase.components.ComponentRegistrar" />
-240-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:59:17-82
-241            <meta-data
-241-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:60:13-62:85
-242                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
-242-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:61:17-119
-243                android:value="com.google.firebase.components.ComponentRegistrar" />
-243-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:62:17-82
-244            <meta-data
-244-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\a6b53e2aceb50551bf768634175e38f2\transformed\firebase-installations-17.2.0\AndroidManifest.xml:15:13-17:85
-245                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsKtxRegistrar"
-245-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\a6b53e2aceb50551bf768634175e38f2\transformed\firebase-installations-17.2.0\AndroidManifest.xml:16:17-130
-246                android:value="com.google.firebase.components.ComponentRegistrar" />
-246-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\a6b53e2aceb50551bf768634175e38f2\transformed\firebase-installations-17.2.0\AndroidManifest.xml:17:17-82
-247            <meta-data
-247-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\a6b53e2aceb50551bf768634175e38f2\transformed\firebase-installations-17.2.0\AndroidManifest.xml:18:13-20:85
-248                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
-248-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\a6b53e2aceb50551bf768634175e38f2\transformed\firebase-installations-17.2.0\AndroidManifest.xml:19:17-127
-249                android:value="com.google.firebase.components.ComponentRegistrar" />
-249-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\a6b53e2aceb50551bf768634175e38f2\transformed\firebase-installations-17.2.0\AndroidManifest.xml:20:17-82
-250            <meta-data
-250-->[com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\ASUS\.gradle\caches\8.13\transforms\be4e3dc6b19d6626a02cd5dfa259aeff\transformed\firebase-common-ktx-20.4.2\AndroidManifest.xml:12:13-14:85
-251                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar"
-251-->[com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\ASUS\.gradle\caches\8.13\transforms\be4e3dc6b19d6626a02cd5dfa259aeff\transformed\firebase-common-ktx-20.4.2\AndroidManifest.xml:13:17-116
-252                android:value="com.google.firebase.components.ComponentRegistrar" />
-252-->[com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\ASUS\.gradle\caches\8.13\transforms\be4e3dc6b19d6626a02cd5dfa259aeff\transformed\firebase-common-ktx-20.4.2\AndroidManifest.xml:14:17-82
-253            <meta-data
-253-->[com.google.firebase:firebase-common:20.4.2] C:\Users\ASUS\.gradle\caches\8.13\transforms\cab10d58a1f000aa183c6ccc08027977\transformed\firebase-common-20.4.2\AndroidManifest.xml:35:13-37:85
-254                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
-254-->[com.google.firebase:firebase-common:20.4.2] C:\Users\ASUS\.gradle\caches\8.13\transforms\cab10d58a1f000aa183c6ccc08027977\transformed\firebase-common-20.4.2\AndroidManifest.xml:36:17-109
-255                android:value="com.google.firebase.components.ComponentRegistrar" />
-255-->[com.google.firebase:firebase-common:20.4.2] C:\Users\ASUS\.gradle\caches\8.13\transforms\cab10d58a1f000aa183c6ccc08027977\transformed\firebase-common-20.4.2\AndroidManifest.xml:37:17-82
-256            <meta-data
-256-->[com.google.firebase:firebase-datatransport:18.1.7] C:\Users\ASUS\.gradle\caches\8.13\transforms\4370d7ddb16c1099b54fbf296a339545\transformed\firebase-datatransport-18.1.7\AndroidManifest.xml:27:13-29:85
-257                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
-257-->[com.google.firebase:firebase-datatransport:18.1.7] C:\Users\ASUS\.gradle\caches\8.13\transforms\4370d7ddb16c1099b54fbf296a339545\transformed\firebase-datatransport-18.1.7\AndroidManifest.xml:28:17-115
-258                android:value="com.google.firebase.components.ComponentRegistrar" />
-258-->[com.google.firebase:firebase-datatransport:18.1.7] C:\Users\ASUS\.gradle\caches\8.13\transforms\4370d7ddb16c1099b54fbf296a339545\transformed\firebase-datatransport-18.1.7\AndroidManifest.xml:29:17-82
-259        </service>
-260
-261        <activity
-261-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\81eae62917e9e2a93fb308994d7c8a15\transformed\play-services-base-18.1.0\AndroidManifest.xml:20:9-22:45
-262            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-262-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\81eae62917e9e2a93fb308994d7c8a15\transformed\play-services-base-18.1.0\AndroidManifest.xml:20:19-85
-263            android:exported="false"
-263-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\81eae62917e9e2a93fb308994d7c8a15\transformed\play-services-base-18.1.0\AndroidManifest.xml:22:19-43
-264            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-264-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\81eae62917e9e2a93fb308994d7c8a15\transformed\play-services-base-18.1.0\AndroidManifest.xml:21:19-78
-265
-266        <provider
-266-->[com.google.firebase:firebase-common:20.4.2] C:\Users\ASUS\.gradle\caches\8.13\transforms\cab10d58a1f000aa183c6ccc08027977\transformed\firebase-common-20.4.2\AndroidManifest.xml:23:9-28:39
-267            android:name="com.google.firebase.provider.FirebaseInitProvider"
-267-->[com.google.firebase:firebase-common:20.4.2] C:\Users\ASUS\.gradle\caches\8.13\transforms\cab10d58a1f000aa183c6ccc08027977\transformed\firebase-common-20.4.2\AndroidManifest.xml:24:13-77
-268            android:authorities="com.emergency.patient.firebaseinitprovider"
-268-->[com.google.firebase:firebase-common:20.4.2] C:\Users\ASUS\.gradle\caches\8.13\transforms\cab10d58a1f000aa183c6ccc08027977\transformed\firebase-common-20.4.2\AndroidManifest.xml:25:13-72
-269            android:directBootAware="true"
-269-->[com.google.firebase:firebase-common:20.4.2] C:\Users\ASUS\.gradle\caches\8.13\transforms\cab10d58a1f000aa183c6ccc08027977\transformed\firebase-common-20.4.2\AndroidManifest.xml:26:13-43
-270            android:exported="false"
-270-->[com.google.firebase:firebase-common:20.4.2] C:\Users\ASUS\.gradle\caches\8.13\transforms\cab10d58a1f000aa183c6ccc08027977\transformed\firebase-common-20.4.2\AndroidManifest.xml:27:13-37
-271            android:initOrder="100" />
-271-->[com.google.firebase:firebase-common:20.4.2] C:\Users\ASUS\.gradle\caches\8.13\transforms\cab10d58a1f000aa183c6ccc08027977\transformed\firebase-common-20.4.2\AndroidManifest.xml:28:13-36
-272
-273        <meta-data
-273-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\8aa6b7d7e242be268c6389ac27aa483b\transformed\play-services-basement-18.1.0\AndroidManifest.xml:21:9-23:69
-274            android:name="com.google.android.gms.version"
-274-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\8aa6b7d7e242be268c6389ac27aa483b\transformed\play-services-basement-18.1.0\AndroidManifest.xml:22:13-58
-275            android:value="@integer/google_play_services_version" />
-275-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\8aa6b7d7e242be268c6389ac27aa483b\transformed\play-services-basement-18.1.0\AndroidManifest.xml:23:13-66
+177
+178        <!-- Restarts EmergencyBackgroundService after device reboot -->
+179        <receiver
+179-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:129:9-135:20
+180            android:name="com.emergency.patient.services.BootReceiver"
+180-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:130:13-50
+181            android:exported="true" >
+181-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:131:13-36
+182            <intent-filter>
+182-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:132:13-134:29
+183                <action android:name="android.intent.action.BOOT_COMPLETED" />
+183-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:133:17-78
+183-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:133:25-76
+184            </intent-filter>
+185        </receiver>
+186        <receiver
+186-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:137:9-139:39
+187            android:name="com.emergency.patient.services.NotificationDismissReceiver"
+187-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:138:13-65
+188            android:exported="false" />
+188-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:139:13-37
+189
+190        <!-- ── Metadata ───────────────────────────────────────────────────── -->
+191
+192
+193        <!-- Google Maps API Key (set in local.properties as MAPS_API_KEY) -->
+194        <meta-data
+195            android:name="com.google.android.geo.API_KEY"
+195-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:145:13-58
+196            android:value="" />
+196-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:146:13-44
+197
+198        <!-- Firebase sender ID (configured via google-services.json) -->
+199        <meta-data
+199-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:149:9-151:59
+200            android:name="com.google.firebase.messaging.default_notification_channel_id"
+200-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:150:13-89
+201            android:value="emergency_extraction_channel" />
+201-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:151:13-57
+202
+203        <activity
+203-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\1febea10de0722f0b90febc5e24be3c2\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:47:9-53:63
+204            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+204-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\1febea10de0722f0b90febc5e24be3c2\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:48:13-74
+205            android:clearTaskOnLaunch="true"
+205-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\1febea10de0722f0b90febc5e24be3c2\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:49:13-45
+206            android:screenOrientation="sensorLandscape"
+206-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\1febea10de0722f0b90febc5e24be3c2\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:50:13-56
+207            android:stateNotNeeded="true"
+207-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\1febea10de0722f0b90febc5e24be3c2\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:51:13-42
+208            android:theme="@style/zxing_CaptureTheme"
+208-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\1febea10de0722f0b90febc5e24be3c2\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:52:13-54
+209            android:windowSoftInputMode="stateAlwaysHidden" /> <!-- Needs to be explicitly declared on P+ -->
+209-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\1febea10de0722f0b90febc5e24be3c2\transformed\zxing-android-embedded-4.3.0\AndroidManifest.xml:53:13-60
+210        <uses-library
+210-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\a0ab7cb48e968dcf82fbf4186a658390\transformed\play-services-maps-18.1.0\AndroidManifest.xml:39:9-41:40
+211            android:name="org.apache.http.legacy"
+211-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\a0ab7cb48e968dcf82fbf4186a658390\transformed\play-services-maps-18.1.0\AndroidManifest.xml:40:13-50
+212            android:required="false" />
+212-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\a0ab7cb48e968dcf82fbf4186a658390\transformed\play-services-maps-18.1.0\AndroidManifest.xml:41:13-37
+213
+214        <receiver
+214-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:29:9-40:20
+215            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+215-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:30:13-78
+216            android:exported="true"
+216-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:31:13-36
+217            android:permission="com.google.android.c2dm.permission.SEND" >
+217-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:32:13-73
+218            <intent-filter>
+218-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:33:13-35:29
+219                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+219-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:34:17-81
+219-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:34:25-78
+220            </intent-filter>
+221
+222            <meta-data
+222-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:37:13-39:40
+223                android:name="com.google.android.gms.cloudmessaging.FINISHED_AFTER_HANDLED"
+223-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:38:17-92
+224                android:value="true" />
+224-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:39:17-37
+225        </receiver>
+226        <!--
+227             FirebaseMessagingService performs security checks at runtime,
+228             but set to not exported to explicitly avoid allowing another app to call it.
+229        -->
+230        <service
+230-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:46:9-53:19
+231            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+231-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:47:13-82
+232            android:directBootAware="true"
+232-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:48:13-43
+233            android:exported="false" >
+233-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:49:13-37
+234            <intent-filter android:priority="-500" >
+234-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:121:13-123:29
+235                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+235-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:122:17-77
+235-->D:\hackathons\new\Emergency-Patient-App\app\src\main\AndroidManifest.xml:122:25-75
+236            </intent-filter>
+237        </service>
+238        <service
+238-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:54:9-63:19
+239            android:name="com.google.firebase.components.ComponentDiscoveryService"
+239-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:55:13-84
+240            android:directBootAware="true"
+240-->[com.google.firebase:firebase-common:20.4.2] C:\Users\ASUS\.gradle\caches\8.13\transforms\cab10d58a1f000aa183c6ccc08027977\transformed\firebase-common-20.4.2\AndroidManifest.xml:32:13-43
+241            android:exported="false" >
+241-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:56:13-37
+242            <meta-data
+242-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:57:13-59:85
+243                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingKtxRegistrar"
+243-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:58:17-122
+244                android:value="com.google.firebase.components.ComponentRegistrar" />
+244-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:59:17-82
+245            <meta-data
+245-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:60:13-62:85
+246                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+246-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:61:17-119
+247                android:value="com.google.firebase.components.ComponentRegistrar" />
+247-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6b41712bc956fbcd336b01f58b692cdf\transformed\firebase-messaging-23.4.0\AndroidManifest.xml:62:17-82
+248            <meta-data
+248-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\a6b53e2aceb50551bf768634175e38f2\transformed\firebase-installations-17.2.0\AndroidManifest.xml:15:13-17:85
+249                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsKtxRegistrar"
+249-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\a6b53e2aceb50551bf768634175e38f2\transformed\firebase-installations-17.2.0\AndroidManifest.xml:16:17-130
+250                android:value="com.google.firebase.components.ComponentRegistrar" />
+250-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\a6b53e2aceb50551bf768634175e38f2\transformed\firebase-installations-17.2.0\AndroidManifest.xml:17:17-82
+251            <meta-data
+251-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\a6b53e2aceb50551bf768634175e38f2\transformed\firebase-installations-17.2.0\AndroidManifest.xml:18:13-20:85
+252                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+252-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\a6b53e2aceb50551bf768634175e38f2\transformed\firebase-installations-17.2.0\AndroidManifest.xml:19:17-127
+253                android:value="com.google.firebase.components.ComponentRegistrar" />
+253-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\a6b53e2aceb50551bf768634175e38f2\transformed\firebase-installations-17.2.0\AndroidManifest.xml:20:17-82
+254            <meta-data
+254-->[com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\ASUS\.gradle\caches\8.13\transforms\be4e3dc6b19d6626a02cd5dfa259aeff\transformed\firebase-common-ktx-20.4.2\AndroidManifest.xml:12:13-14:85
+255                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar"
+255-->[com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\ASUS\.gradle\caches\8.13\transforms\be4e3dc6b19d6626a02cd5dfa259aeff\transformed\firebase-common-ktx-20.4.2\AndroidManifest.xml:13:17-116
+256                android:value="com.google.firebase.components.ComponentRegistrar" />
+256-->[com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\ASUS\.gradle\caches\8.13\transforms\be4e3dc6b19d6626a02cd5dfa259aeff\transformed\firebase-common-ktx-20.4.2\AndroidManifest.xml:14:17-82
+257            <meta-data
+257-->[com.google.firebase:firebase-common:20.4.2] C:\Users\ASUS\.gradle\caches\8.13\transforms\cab10d58a1f000aa183c6ccc08027977\transformed\firebase-common-20.4.2\AndroidManifest.xml:35:13-37:85
+258                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
+258-->[com.google.firebase:firebase-common:20.4.2] C:\Users\ASUS\.gradle\caches\8.13\transforms\cab10d58a1f000aa183c6ccc08027977\transformed\firebase-common-20.4.2\AndroidManifest.xml:36:17-109
+259                android:value="com.google.firebase.components.ComponentRegistrar" />
+259-->[com.google.firebase:firebase-common:20.4.2] C:\Users\ASUS\.gradle\caches\8.13\transforms\cab10d58a1f000aa183c6ccc08027977\transformed\firebase-common-20.4.2\AndroidManifest.xml:37:17-82
+260            <meta-data
+260-->[com.google.firebase:firebase-datatransport:18.1.7] C:\Users\ASUS\.gradle\caches\8.13\transforms\4370d7ddb16c1099b54fbf296a339545\transformed\firebase-datatransport-18.1.7\AndroidManifest.xml:27:13-29:85
+261                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+261-->[com.google.firebase:firebase-datatransport:18.1.7] C:\Users\ASUS\.gradle\caches\8.13\transforms\4370d7ddb16c1099b54fbf296a339545\transformed\firebase-datatransport-18.1.7\AndroidManifest.xml:28:17-115
+262                android:value="com.google.firebase.components.ComponentRegistrar" />
+262-->[com.google.firebase:firebase-datatransport:18.1.7] C:\Users\ASUS\.gradle\caches\8.13\transforms\4370d7ddb16c1099b54fbf296a339545\transformed\firebase-datatransport-18.1.7\AndroidManifest.xml:29:17-82
+263        </service>
+264
+265        <activity
+265-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\81eae62917e9e2a93fb308994d7c8a15\transformed\play-services-base-18.1.0\AndroidManifest.xml:20:9-22:45
+266            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+266-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\81eae62917e9e2a93fb308994d7c8a15\transformed\play-services-base-18.1.0\AndroidManifest.xml:20:19-85
+267            android:exported="false"
+267-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\81eae62917e9e2a93fb308994d7c8a15\transformed\play-services-base-18.1.0\AndroidManifest.xml:22:19-43
+268            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+268-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\81eae62917e9e2a93fb308994d7c8a15\transformed\play-services-base-18.1.0\AndroidManifest.xml:21:19-78
+269
+270        <provider
+270-->[com.google.firebase:firebase-common:20.4.2] C:\Users\ASUS\.gradle\caches\8.13\transforms\cab10d58a1f000aa183c6ccc08027977\transformed\firebase-common-20.4.2\AndroidManifest.xml:23:9-28:39
+271            android:name="com.google.firebase.provider.FirebaseInitProvider"
+271-->[com.google.firebase:firebase-common:20.4.2] C:\Users\ASUS\.gradle\caches\8.13\transforms\cab10d58a1f000aa183c6ccc08027977\transformed\firebase-common-20.4.2\AndroidManifest.xml:24:13-77
+272            android:authorities="com.emergency.patient.firebaseinitprovider"
+272-->[com.google.firebase:firebase-common:20.4.2] C:\Users\ASUS\.gradle\caches\8.13\transforms\cab10d58a1f000aa183c6ccc08027977\transformed\firebase-common-20.4.2\AndroidManifest.xml:25:13-72
+273            android:directBootAware="true"
+273-->[com.google.firebase:firebase-common:20.4.2] C:\Users\ASUS\.gradle\caches\8.13\transforms\cab10d58a1f000aa183c6ccc08027977\transformed\firebase-common-20.4.2\AndroidManifest.xml:26:13-43
+274            android:exported="false"
+274-->[com.google.firebase:firebase-common:20.4.2] C:\Users\ASUS\.gradle\caches\8.13\transforms\cab10d58a1f000aa183c6ccc08027977\transformed\firebase-common-20.4.2\AndroidManifest.xml:27:13-37
+275            android:initOrder="100" />
+275-->[com.google.firebase:firebase-common:20.4.2] C:\Users\ASUS\.gradle\caches\8.13\transforms\cab10d58a1f000aa183c6ccc08027977\transformed\firebase-common-20.4.2\AndroidManifest.xml:28:13-36
 276
-277        <provider
-277-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6e8f3b2e620627860d1b310ca9fcd9a6\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
-278            android:name="androidx.startup.InitializationProvider"
-278-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6e8f3b2e620627860d1b310ca9fcd9a6\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
-279            android:authorities="com.emergency.patient.androidx-startup"
-279-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6e8f3b2e620627860d1b310ca9fcd9a6\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
-280            android:exported="false" >
-280-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6e8f3b2e620627860d1b310ca9fcd9a6\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
-281            <meta-data
-281-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6e8f3b2e620627860d1b310ca9fcd9a6\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
-282                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-282-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6e8f3b2e620627860d1b310ca9fcd9a6\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
-283                android:value="androidx.startup" />
-283-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6e8f3b2e620627860d1b310ca9fcd9a6\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
-284            <meta-data
-284-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ASUS\.gradle\caches\8.13\transforms\86b1a64bc9ffa678d857264c65466580\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
-285                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-285-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ASUS\.gradle\caches\8.13\transforms\86b1a64bc9ffa678d857264c65466580\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
-286                android:value="androidx.startup" />
-286-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ASUS\.gradle\caches\8.13\transforms\86b1a64bc9ffa678d857264c65466580\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
-287        </provider>
-288
-289        <service
-289-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\ASUS\.gradle\caches\8.13\transforms\358332a73e6193ea360af6a3e561532c\transformed\transport-backend-cct-3.1.8\AndroidManifest.xml:28:9-34:19
-290            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
-290-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\ASUS\.gradle\caches\8.13\transforms\358332a73e6193ea360af6a3e561532c\transformed\transport-backend-cct-3.1.8\AndroidManifest.xml:29:13-103
-291            android:exported="false" >
-291-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\ASUS\.gradle\caches\8.13\transforms\358332a73e6193ea360af6a3e561532c\transformed\transport-backend-cct-3.1.8\AndroidManifest.xml:30:13-37
-292            <meta-data
-292-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\ASUS\.gradle\caches\8.13\transforms\358332a73e6193ea360af6a3e561532c\transformed\transport-backend-cct-3.1.8\AndroidManifest.xml:31:13-33:39
-293                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
-293-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\ASUS\.gradle\caches\8.13\transforms\358332a73e6193ea360af6a3e561532c\transformed\transport-backend-cct-3.1.8\AndroidManifest.xml:32:17-94
-294                android:value="cct" />
-294-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\ASUS\.gradle\caches\8.13\transforms\358332a73e6193ea360af6a3e561532c\transformed\transport-backend-cct-3.1.8\AndroidManifest.xml:33:17-36
-295        </service>
-296        <service
-296-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\ASUS\.gradle\caches\8.13\transforms\635097149f00dea31789e0b8e9783dde\transformed\transport-runtime-3.1.8\AndroidManifest.xml:26:9-30:19
-297            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
-297-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\ASUS\.gradle\caches\8.13\transforms\635097149f00dea31789e0b8e9783dde\transformed\transport-runtime-3.1.8\AndroidManifest.xml:27:13-117
-298            android:exported="false"
-298-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\ASUS\.gradle\caches\8.13\transforms\635097149f00dea31789e0b8e9783dde\transformed\transport-runtime-3.1.8\AndroidManifest.xml:28:13-37
-299            android:permission="android.permission.BIND_JOB_SERVICE" >
-299-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\ASUS\.gradle\caches\8.13\transforms\635097149f00dea31789e0b8e9783dde\transformed\transport-runtime-3.1.8\AndroidManifest.xml:29:13-69
-300        </service>
-301
-302        <receiver
-302-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\ASUS\.gradle\caches\8.13\transforms\635097149f00dea31789e0b8e9783dde\transformed\transport-runtime-3.1.8\AndroidManifest.xml:32:9-34:40
-303            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
-303-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\ASUS\.gradle\caches\8.13\transforms\635097149f00dea31789e0b8e9783dde\transformed\transport-runtime-3.1.8\AndroidManifest.xml:33:13-132
-304            android:exported="false" />
-304-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\ASUS\.gradle\caches\8.13\transforms\635097149f00dea31789e0b8e9783dde\transformed\transport-runtime-3.1.8\AndroidManifest.xml:34:13-37
-305    </application>
-306
-307</manifest>
+277        <meta-data
+277-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\8aa6b7d7e242be268c6389ac27aa483b\transformed\play-services-basement-18.1.0\AndroidManifest.xml:21:9-23:69
+278            android:name="com.google.android.gms.version"
+278-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\8aa6b7d7e242be268c6389ac27aa483b\transformed\play-services-basement-18.1.0\AndroidManifest.xml:22:13-58
+279            android:value="@integer/google_play_services_version" />
+279-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\8aa6b7d7e242be268c6389ac27aa483b\transformed\play-services-basement-18.1.0\AndroidManifest.xml:23:13-66
+280
+281        <provider
+281-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6e8f3b2e620627860d1b310ca9fcd9a6\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+282            android:name="androidx.startup.InitializationProvider"
+282-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6e8f3b2e620627860d1b310ca9fcd9a6\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+283            android:authorities="com.emergency.patient.androidx-startup"
+283-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6e8f3b2e620627860d1b310ca9fcd9a6\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+284            android:exported="false" >
+284-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6e8f3b2e620627860d1b310ca9fcd9a6\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+285            <meta-data
+285-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6e8f3b2e620627860d1b310ca9fcd9a6\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+286                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+286-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6e8f3b2e620627860d1b310ca9fcd9a6\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+287                android:value="androidx.startup" />
+287-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ASUS\.gradle\caches\8.13\transforms\6e8f3b2e620627860d1b310ca9fcd9a6\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+288            <meta-data
+288-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ASUS\.gradle\caches\8.13\transforms\86b1a64bc9ffa678d857264c65466580\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+289                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+289-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ASUS\.gradle\caches\8.13\transforms\86b1a64bc9ffa678d857264c65466580\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+290                android:value="androidx.startup" />
+290-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ASUS\.gradle\caches\8.13\transforms\86b1a64bc9ffa678d857264c65466580\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+291        </provider>
+292
+293        <service
+293-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\ASUS\.gradle\caches\8.13\transforms\358332a73e6193ea360af6a3e561532c\transformed\transport-backend-cct-3.1.8\AndroidManifest.xml:28:9-34:19
+294            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+294-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\ASUS\.gradle\caches\8.13\transforms\358332a73e6193ea360af6a3e561532c\transformed\transport-backend-cct-3.1.8\AndroidManifest.xml:29:13-103
+295            android:exported="false" >
+295-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\ASUS\.gradle\caches\8.13\transforms\358332a73e6193ea360af6a3e561532c\transformed\transport-backend-cct-3.1.8\AndroidManifest.xml:30:13-37
+296            <meta-data
+296-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\ASUS\.gradle\caches\8.13\transforms\358332a73e6193ea360af6a3e561532c\transformed\transport-backend-cct-3.1.8\AndroidManifest.xml:31:13-33:39
+297                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+297-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\ASUS\.gradle\caches\8.13\transforms\358332a73e6193ea360af6a3e561532c\transformed\transport-backend-cct-3.1.8\AndroidManifest.xml:32:17-94
+298                android:value="cct" />
+298-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\ASUS\.gradle\caches\8.13\transforms\358332a73e6193ea360af6a3e561532c\transformed\transport-backend-cct-3.1.8\AndroidManifest.xml:33:17-36
+299        </service>
+300        <service
+300-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\ASUS\.gradle\caches\8.13\transforms\635097149f00dea31789e0b8e9783dde\transformed\transport-runtime-3.1.8\AndroidManifest.xml:26:9-30:19
+301            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+301-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\ASUS\.gradle\caches\8.13\transforms\635097149f00dea31789e0b8e9783dde\transformed\transport-runtime-3.1.8\AndroidManifest.xml:27:13-117
+302            android:exported="false"
+302-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\ASUS\.gradle\caches\8.13\transforms\635097149f00dea31789e0b8e9783dde\transformed\transport-runtime-3.1.8\AndroidManifest.xml:28:13-37
+303            android:permission="android.permission.BIND_JOB_SERVICE" >
+303-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\ASUS\.gradle\caches\8.13\transforms\635097149f00dea31789e0b8e9783dde\transformed\transport-runtime-3.1.8\AndroidManifest.xml:29:13-69
+304        </service>
+305
+306        <receiver
+306-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\ASUS\.gradle\caches\8.13\transforms\635097149f00dea31789e0b8e9783dde\transformed\transport-runtime-3.1.8\AndroidManifest.xml:32:9-34:40
+307            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+307-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\ASUS\.gradle\caches\8.13\transforms\635097149f00dea31789e0b8e9783dde\transformed\transport-runtime-3.1.8\AndroidManifest.xml:33:13-132
+308            android:exported="false" />
+308-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\ASUS\.gradle\caches\8.13\transforms\635097149f00dea31789e0b8e9783dde\transformed\transport-runtime-3.1.8\AndroidManifest.xml:34:13-37
+309    </application>
+310
+311</manifest>

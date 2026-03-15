@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ValidationActivity layout — Human-in-the-loop AI validation (Phase 4 §15.6)
+    Shows: document source label, extracted fields as editable EditTexts,
+    Approve & Save / Reject & Discard actions at the bottom.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_background">
+
+    <!-- ═══ Toolbar ═══════════════════════════════════════════════════════ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:background="@color/color_background">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Review Extracted Data"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/color_text_primary"/>
+    </LinearLayout>
+
+    <!-- ═══ Warning Banner ═════════════════════════════════════════════════ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_validation_banner_bg"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="⚠"
+            android:textSize="16sp"
+            android:textColor="@color/color_primary_orange"
+            android:layout_marginEnd="10dp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Review each field carefully. AI can make mistakes. Tap Approve only when correct."
+            android:textSize="13sp"
+            android:textColor="@color/color_primary_orange"/>
+    </LinearLayout>
+
+    <!-- ═══ Scrollable content ═══════════════════════════════════════════════ -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Source doc name -->
+            <TextView
+                android:id="@+id/tv_doc_name_validation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="@color/color_text_secondary"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Section header -->
+            <TextView
+                android:id="@+id/tv_extracted_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Extracted Medical Data"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/color_text_primary"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Dynamic fields container — populated in code -->
+            <LinearLayout
+                android:id="@+id/ll_fields_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ═══ Bottom action bar ══════════════════════════════════════════════ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Confirm disclaimer -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Approving commits this data to your medical profile."
+            android:textSize="12sp"
+            android:textColor="@color/color_text_secondary"
+            android:gravity="center"
+            android:layout_marginBottom="12dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- REJECT — ghost style -->
+            <Button
+                android:id="@+id/btn_reject_discard"
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:layout_weight="1"
+                android:text="Discard"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/color_text_secondary"
+                android:background="@drawable/bg_pill_dark"
+                android:layout_marginEnd="8dp"/>
+
+            <!-- APPROVE — orange filled -->
+            <Button
+                android:id="@+id/btn_approve_save"
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:layout_weight="1"
+                android:text="Approve &amp; Save"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/color_primary_orange"
+                android:layout_marginStart="8dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

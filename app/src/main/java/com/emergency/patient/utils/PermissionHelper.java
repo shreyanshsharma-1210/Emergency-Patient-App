@@ -13,6 +13,9 @@ import android.provider.Settings;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * PermissionHelper — Centralizes all runtime and special permission requests.
  *
@@ -23,28 +26,31 @@ public class PermissionHelper {
 
     public static final int REQUEST_CODE_PERMISSIONS = 1001;
 
-    /** Dangerous permissions that can be batch-requested at runtime. */
-    private static final String[] DANGEROUS_PERMISSIONS = {
-            Manifest.permission.SEND_SMS,
-            Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.CALL_PHONE
-    };
+    private static String[] getDangerousPermissions() {
+        List<String> permissions = new ArrayList<>();
+        permissions.add(Manifest.permission.SEND_SMS);
+        permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
+        permissions.add(Manifest.permission.CALL_PHONE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            permissions.add(Manifest.permission.POST_NOTIFICATIONS);
+        }
+        return permissions.toArray(new String[0]);
+    }
 
     /**
      * Request all dangerous permissions as a single batch.
      * Call from an Activity; handle results in onRequestPermissionsResult().
      */
     public static void requestDangerousPermissions(@NonNull Activity activity) {
-        ActivityCompat.requestPermissions(activity, DANGEROUS_PERMISSIONS, REQUEST_CODE_PERMISSIONS);
+        ActivityCompat.requestPermissions(activity, getDangerousPermissions(), REQUEST_CODE_PERMISSIONS);
     }
 
     /**
      * Returns true only if every dangerous permission has been granted.
      */
     public static boolean areAllDangerousPermissionsGranted(@NonNull Context context) {
-        for (String permission : DANGEROUS_PERMISSIONS) {
-            if (ActivityCompat.checkSelfPermission(context, permission)
-                    != PackageManager.PERMISSION_GRANTED) {
+        for (String permission : getDangerousPermissions()) {
+            if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
                 return false;
             }
         }
@@ -65,8 +71,7 @@ public class PermissionHelper {
     public static void requestOverlayPermission(@NonNull Activity activity) {
         Intent intent = new Intent(
                 Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                Uri.parse("package:" + activity.getPackageName())
-        );
+                Uri.parse("package:" + activity.getPackageName()));
         activity.startActivity(intent);
     }
 
@@ -89,10 +94,45 @@ public class PermissionHelper {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             Intent intent = new Intent(
                     Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
-                    Uri.parse("package:" + activity.getPackageName())
-            );
+                    Uri.parse("package:" + activity.getPackageName()));
             activity.startActivity(intent);
         }
+    }
+
+    /**
+     * Opens the global battery optimization settings list so the app can be set to
+     * "Unrestricted".
+     */
+    public static void openBatteryOptimizationSettings(@NonNull Activity activity) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return;
+        }
+
+        Intent intent = new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
+        if (intent.resolveActivity(activity.getPackageManager()) != null) {
+            activity.startActivity(intent);
+        } else {
+            Intent appDetails = new Intent(
+                    Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                    Uri.parse("package:" + activity.getPackageName()));
+            activity.startActivity(appDetails);
+        }
+    }
+
+    /**
+     * Best-effort bypass for personal devices:
+     * 1) asks direct exemption
+     * 2) opens battery optimization settings as fallback.
+     */
+    public static void enforceBatteryOptimizationBypass(@NonNull Activity activity) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return;
+        }
+        if (isBatteryOptimizationIgnored(activity)) {
+            return;
+        }
+        requestBatteryOptimizationExemption(activity);
+        openBatteryOptimizationSettings(activity);
     }
 
     // ─── Convenience: Request All ─────────────────────────────────────────────
@@ -109,7 +149,7 @@ public class PermissionHelper {
             requestOverlayPermission(activity);
         }
         if (!isBatteryOptimizationIgnored(activity)) {
-            requestBatteryOptimizationExemption(activity);
+            enforceBatteryOptimizationBypass(activity);
         }
     }
 }

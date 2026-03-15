@@ -7,8 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.emergency.patient.R;
+import com.emergency.patient.network.FcmTokenSyncManager;
 import com.emergency.patient.security.TokenManager;
 import com.emergency.patient.services.EmergencyBackgroundService;
+import com.emergency.patient.utils.PermissionHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class DashboardActivity extends AppCompatActivity {
@@ -25,6 +27,8 @@ public class DashboardActivity extends AppCompatActivity {
         }
 
         requestNotificationPermission();
+        PermissionHelper.enforceBatteryOptimizationBypass(this);
+        FcmTokenSyncManager.syncCurrentToken(this);
 
         setContentView(R.layout.activity_main);
         EmergencyBackgroundService.start(this);
@@ -33,7 +37,7 @@ public class DashboardActivity extends AppCompatActivity {
         bottomNav.setOnItemSelectedListener(item -> {
             Fragment selectedFragment = null;
             int itemId = item.getItemId();
-            
+
             if (itemId == R.id.nav_health_resume) {
                 selectedFragment = new HealthResumeFragment();
             } else if (itemId == R.id.nav_medical_id) {
@@ -59,10 +63,10 @@ public class DashboardActivity extends AppCompatActivity {
 
     private void requestNotificationPermission() {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
-            if (androidx.core.content.ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) !=
-                    android.content.pm.PackageManager.PERMISSION_GRANTED) {
+            if (androidx.core.content.ContextCompat.checkSelfPermission(this,
+                    android.Manifest.permission.POST_NOTIFICATIONS) != android.content.pm.PackageManager.PERMISSION_GRANTED) {
                 androidx.core.app.ActivityCompat.requestPermissions(this,
-                        new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 101);
+                        new String[] { android.Manifest.permission.POST_NOTIFICATIONS }, 101);
             }
         }
     }

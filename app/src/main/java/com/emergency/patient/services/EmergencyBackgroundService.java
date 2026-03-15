@@ -8,6 +8,7 @@ import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.IBinder;
 
@@ -17,6 +18,8 @@ import androidx.core.app.NotificationCompat;
 import com.emergency.patient.R;
 import com.emergency.patient.activities.DashboardActivity;
 import com.emergency.patient.activities.QuickAccessActivity;
+import com.emergency.patient.security.TokenManager;
+import com.emergency.patient.utils.QrGenerator;
 
 /**
  * EmergencyBackgroundService — Persistent foreground service.
@@ -53,12 +56,12 @@ public class EmergencyBackgroundService extends Service {
 
         Notification notification = buildNotification();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            startForeground(NOTIFICATION_ID, notification, 
-                android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE);
+            startForeground(NOTIFICATION_ID, notification,
+                    android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE);
         } else {
             startForeground(NOTIFICATION_ID, notification);
         }
-        
+
         return START_STICKY;
     }
 
@@ -81,12 +84,12 @@ public class EmergencyBackgroundService extends Service {
             NotificationChannel channel = new NotificationChannel(
                     CHANNEL_ID,
                     "Medical ID & SOS",
-                    NotificationManager.IMPORTANCE_HIGH
-            );
+                    NotificationManager.IMPORTANCE_HIGH);
             channel.setDescription("Quick access for paramedics & ambulance");
             channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
             NotificationManager nm = getSystemService(NotificationManager.class);
-            if (nm != null) nm.createNotificationChannel(channel);
+            if (nm != null)
+                nm.createNotificationChannel(channel);
         }
     }
 
@@ -94,15 +97,20 @@ public class EmergencyBackgroundService extends Service {
         // Tapping the notification opens QuickAccessActivity
         Intent quickAccessIntent = new Intent(this, QuickAccessActivity.class);
         quickAccessIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        
+
         PendingIntent pendingIntent = PendingIntent.getActivity(
                 this, 0, quickAccessIntent,
-                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
-        );
+                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
 
-        Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
+        Bitmap qrBitmap = null;
+        String uuid = TokenManager.getUUID(this);
+        if (uuid != null && !uuid.trim().isEmpty()) {
+            qrBitmap = QrGenerator.generate(uuid, 384);
+        }
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle("Medical ID & Emergency SOS")
-                .setContentText("Tap for Paramedic Access or Ambulance")
+                .setContentText("Tap to open. Expand to show emergency QR.")
                 .setSmallIcon(R.drawable.ic_sos_cross)
                 .setContentIntent(pendingIntent)
                 .setOngoing(true)
@@ -111,12 +119,21 @@ public class EmergencyBackgroundService extends Service {
                 .setCategory(NotificationCompat.CATEGORY_SERVICE)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setPriority(NotificationCompat.PRIORITY_MAX)
-                .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)
-                .build();
+                .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE);
+
+        if (qrBitmap != null) {
+            builder.setLargeIcon(qrBitmap)
+                    .setStyle(new NotificationCompat.BigPictureStyle()
+                            .bigPicture(qrBitmap)
+                            .bigLargeIcon((Bitmap) null)
+                            .setSummaryText("Emergency QR ready for paramedic scan"));
+        }
+
+        Notification notification = builder.build();
 
         // Critical: Set flags for non-dismissible behavior
         notification.flags |= Notification.FLAG_ONGOING_EVENT | Notification.FLAG_NO_CLEAR;
-        
+
         return notification;
     }
 

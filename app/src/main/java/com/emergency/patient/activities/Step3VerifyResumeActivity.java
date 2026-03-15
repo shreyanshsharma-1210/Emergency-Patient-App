@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.emergency.patient.R;
 import com.emergency.patient.models.PatientProfile;
+import com.emergency.patient.network.FcmTokenSyncManager;
 import com.emergency.patient.security.TokenManager;
 import com.emergency.patient.services.EmergencyBackgroundService;
 import com.emergency.patient.utils.PermissionHelper;
@@ -49,25 +50,26 @@ public class Step3VerifyResumeActivity extends AppCompatActivity {
     }
 
     private void bindViews() {
-        tvName          = findViewById(R.id.tv_verify_name);
-        tvGenderDob     = findViewById(R.id.tv_verify_gender_dob);
-        tvBlood         = findViewById(R.id.tv_verify_blood);
-        tvConditions    = findViewById(R.id.tv_verify_conditions);
+        tvName = findViewById(R.id.tv_verify_name);
+        tvGenderDob = findViewById(R.id.tv_verify_gender_dob);
+        tvBlood = findViewById(R.id.tv_verify_blood);
+        tvConditions = findViewById(R.id.tv_verify_conditions);
         tvVerifyContacts = findViewById(R.id.tv_verify_contacts);
 
-        btnBack         = findViewById(R.id.btn_back_step3);
+        btnBack = findViewById(R.id.btn_back_step3);
         btnVerifyCreate = findViewById(R.id.btn_verify_create);
     }
 
     private void populateSummary() {
         tvName.setText(profile.getFullName());
-        
+
         String dobString = "";
         if (profile.getDobMillis() > 0) {
-            dobString = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(new Date(profile.getDobMillis()));
+            dobString = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
+                    .format(new Date(profile.getDobMillis()));
         }
         tvGenderDob.setText((profile.getGender() != null ? profile.getGender() : "") + "  •  " + dobString);
-        
+
         tvBlood.setText("Blood Group: " + (profile.getBloodGroup() != null ? profile.getBloodGroup() : "Unknown"));
 
         List<String> conditions = profile.getActiveConditionsList();
@@ -108,10 +110,10 @@ public class Step3VerifyResumeActivity extends AppCompatActivity {
     private void completeRegistration() {
         // Mock backend generating a UUID
         String mockPatientUuid = UUID.randomUUID().toString();
-        
+
         // Save Core Identifier
         TokenManager.saveUUID(this, mockPatientUuid);
-        
+
         // Save Demographics to TokenManager
         TokenManager.savePatientName(this, profile.getFullName());
         TokenManager.saveDOB(this, profile.getDobMillis());
@@ -121,7 +123,8 @@ public class Step3VerifyResumeActivity extends AppCompatActivity {
         // Save Condtions
         List<String> activeConditions = profile.getActiveConditionsList();
         Set<String> conditionSet = new HashSet<>(activeConditions);
-        if (conditionSet.isEmpty()) conditionSet.add("Healthy");
+        if (conditionSet.isEmpty())
+            conditionSet.add("Healthy");
         TokenManager.saveConditions(this, conditionSet);
 
         // Save Emergency Contacts (as JSON string)
@@ -134,11 +137,13 @@ public class Step3VerifyResumeActivity extends AppCompatActivity {
                 contactsArr.put(obj);
             }
             TokenManager.saveEmergencyContacts(this, contactsArr.toString());
-        } catch (org.json.JSONException ignored) {}
+        } catch (org.json.JSONException ignored) {
+        }
 
         // Required App setup
         PermissionHelper.requestAllPermissions(this);
         TokenManager.setOnboardingComplete(this, true);
+        FcmTokenSyncManager.syncCurrentToken(this);
 
         // Start Persistent Notification Service
         EmergencyBackgroundService.start(this);

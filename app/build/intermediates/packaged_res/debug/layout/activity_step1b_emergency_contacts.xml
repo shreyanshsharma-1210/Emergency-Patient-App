@@ -127,7 +127,7 @@
             android:id="@+id/btn_next_step1b"
             android:layout_width="match_parent"
             android:layout_height="64dp"
-            android:text="CONTINUE TO TRIAGE"
+            android:text="Let&#39;s get to know you"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@android:color/white"

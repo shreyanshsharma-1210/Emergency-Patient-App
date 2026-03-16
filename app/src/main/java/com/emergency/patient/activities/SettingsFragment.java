@@ -13,20 +13,37 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.net.Uri;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.emergency.patient.R;
+import com.emergency.patient.db.AppDatabase;
+import com.emergency.patient.db.AppDatabaseProvider;
+import com.emergency.patient.db.PatientEntity;
 import com.emergency.patient.security.TokenManager;
 import com.emergency.patient.services.EmergencyBackgroundService;
+import com.google.android.material.imageview.ShapeableImageView;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Date;
 import java.util.Set;
 
 public class SettingsFragment extends Fragment {
 
-    private TextView tvName, tvConditions, tvDob, tvBloodGroup;
+    private TextView tvName, tvDob, tvBloodGroup;
+    private ActivityResultLauncher<String> imagePickerLauncher;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Nullable
     @Override
@@ -34,11 +51,12 @@ public class SettingsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
         tvName = view.findViewById(R.id.tv_settings_name);
-        tvConditions = view.findViewById(R.id.tv_settings_conditions);
         tvDob = view.findViewById(R.id.tv_settings_dob);
         tvBloodGroup = view.findViewById(R.id.tv_settings_blood_group);
 
         populateData();
+
+
 
         view.findViewById(R.id.btn_edit_profile).setOnClickListener(v -> {
             startActivity(new Intent(getContext(), EditProfileActivity.class));
@@ -62,12 +80,7 @@ public class SettingsFragment extends Fragment {
         String name = TokenManager.getPatientName(getContext());
         tvName.setText(name.isEmpty() ? "Unknown" : name);
 
-        Set<String> conditions = TokenManager.getConditions(getContext());
-        if (conditions != null && !conditions.isEmpty()) {
-            tvConditions.setText(String.join("\n", conditions));
-        } else {
-            tvConditions.setText("No conditions listed");
-        }
+
 
         long dobMillis = TokenManager.getDOB(getContext());
         if (dobMillis > 0) {
@@ -79,7 +92,11 @@ public class SettingsFragment extends Fragment {
         // Use TokenManager for blood group as well
         String bloodGroup = TokenManager.getBloodGroup(getContext());
         tvBloodGroup.setText(bloodGroup.isEmpty() ? "Unknown" : bloodGroup);
+
+
     }
+
+
 
     private void showResetConfirmationDialog() {
         if (getContext() == null) return;
@@ -89,10 +106,25 @@ public class SettingsFragment extends Fragment {
                 .setMessage("Resetting your profile will void your current Emergency QR code. You will need to re-verify your health data permanently. Are you sure?")
                 .setPositiveButton("Reset & Start Over", (dialog, which) -> {
                     EmergencyBackgroundService.stop(getContext());
+                    
+                    // Throroughly clear both TokenManager and Room DB
                     TokenManager.clearAll(getContext());
-                    Intent intent = new Intent(getContext(), Step1BasicInfoActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
+                    
+                    new Thread(() -> {
+                        AppDatabase db = AppDatabaseProvider.getInstance(getContext());
+                        db.patientDao().deleteAllPatients();
+                        db.emergencyContactDao().deleteAllContacts();
+                        db.healthDocumentDao().deleteAllDocuments();
+                        
+                        if (getActivity() != null) {
+                            getActivity().runOnUiThread(() -> {
+                                Toast.makeText(getContext(), "Profile reset successfully", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getContext(), Step1BasicInfoActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
+                            });
+                        }
+                    }).start();
                 })
                 .setNegativeButton("Cancel", null)
                 .show();

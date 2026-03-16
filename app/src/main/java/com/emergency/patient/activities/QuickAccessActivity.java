@@ -36,7 +36,7 @@ import java.util.Set;
  */
 public class QuickAccessActivity extends AppCompatActivity {
 
-    private TextView tvName, tvCondition, tvCountdown, tvCountdownLabel, tvSlideHint;
+    private TextView tvName, tvCountdown, tvCountdownLabel, tvSlideHint;
     private ImageView ivQr;
     private FrameLayout sliderContainer, sliderThumb, countdownOverlay;
     private Button btnCancel;
@@ -68,7 +68,6 @@ public class QuickAccessActivity extends AppCompatActivity {
 
     private void bindViews() {
         tvName             = findViewById(R.id.tv_quick_name);
-        tvCondition        = findViewById(R.id.tv_quick_condition);
         ivQr               = findViewById(R.id.iv_quick_qr);
         sliderContainer    = findViewById(R.id.slider_container);
         sliderThumb        = findViewById(R.id.slider_thumb);
@@ -83,13 +82,7 @@ public class QuickAccessActivity extends AppCompatActivity {
         String name = TokenManager.getPatientName(this);
         tvName.setText(name.isEmpty() ? getString(android.R.string.unknownName) : name);
 
-        Set<String> conditions = TokenManager.getConditions(this);
-        if (conditions != null && !conditions.isEmpty()) {
-            tvCondition.setText(conditions.iterator().next());
-            tvCondition.setVisibility(View.VISIBLE);
-        } else {
-            tvCondition.setVisibility(View.GONE);
-        }
+
 
         String uuid = TokenManager.getUUID(this);
         if (uuid != null) {

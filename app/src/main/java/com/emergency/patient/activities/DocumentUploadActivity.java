@@ -12,34 +12,23 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.emergency.patient.R;
-import com.emergency.patient.network.ApiClient;
+import com.emergency.patient.db.AppDatabaseProvider;
+import com.emergency.patient.db.HealthDocumentEntity;
 import com.emergency.patient.security.TokenManager;
 import com.emergency.patient.utils.DocumentPickerHelper;
+import com.emergency.patient.utils.LocalStorageManager;
 
 import java.io.File;
 
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.http.Multipart;
-import retrofit2.http.POST;
-import retrofit2.http.Part;
-
 /**
- * DocumentUploadActivity — Phase 4 document intake.
+ * DocumentUploadActivity — Simple document intake.
  *
- * States: IDLE → SELECTED → UPLOADING → PROCESSING → DONE / ERROR
+ * States: IDLE → SELECTED → UPLOADING → ERROR
  *
  * Flow:
- *  1. Patient taps "+ Add Document" — SAF picker opens (PDF / image only)
+ *  1. Patient taps "+ Add Document" — SAF picker opens
  *  2. Selected file shown with thumbnail + file name
- *  3. "Upload" → POST multipart/form-data → show progress overlay
- *  4. Backend returns job_id; screen waits for push ("extraction_complete")
- *  5. On notification → launch ValidationActivity with extracted data
+ *  3. "Upload" → Saves locally attached to patient's records
  */
 public class DocumentUploadActivity extends AppCompatActivity {
 
@@ -56,16 +45,6 @@ public class DocumentUploadActivity extends AppCompatActivity {
     private Uri pickedUri;
     private File pickedFile;
     private String pickedName;
-
-    // ─── Retrofit API interface ───────────────────────────────────────────────
-    interface UploadApi {
-        @Multipart
-        @POST("api/patient/documents/upload")
-        Call<ResponseBody> uploadDocument(
-                @Part MultipartBody.Part file,
-                @Part("patientUUID") RequestBody uuid
-        );
-    }
 
     // ─── Lifecycle ────────────────────────────────────────────────────────────
 
@@ -124,44 +103,32 @@ public class DocumentUploadActivity extends AppCompatActivity {
         tvUploadStatus.setText("Uploading…");
 
         String uuid = TokenManager.getUUID(this);
-        String mime = DocumentPickerHelper.getMimeType(this, pickedUri);
 
-        RequestBody fileBody = RequestBody.create(pickedFile, MediaType.parse(mime));
-        MultipartBody.Part filePart = MultipartBody.Part.createFormData(
-                "document", pickedFile.getName(), fileBody);
-        RequestBody uuidBody = RequestBody.create(uuid, MediaType.parse("text/plain"));
-
-        UploadApi api = ApiClient.getInstance(this).create(UploadApi.class);
-        api.uploadDocument(filePart, uuidBody).enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.isSuccessful()) {
-                    // Backend accepted upload — now polling for extraction_complete push
-                    tvUploadStatus.setText("Processing by AI…");
-                    // TODO: Register FCM listener; navigate when push arrives
-                    // For now simulate success after delay
-                    progressUpload.postDelayed(
-                            () -> launchValidation("{\"job_id\":\"pending\"}"),
-                            2_000);
-                } else {
-                    showError("Upload failed (" + response.code() + "). Please try again.");
+        // Save original doc to local storage and DB for tracking
+        String savedPath = LocalStorageManager.saveFileToInternalStorage(
+                DocumentUploadActivity.this, pickedUri, pickedName);
+        
+        if (savedPath != null) {
+            HealthDocumentEntity doc = new HealthDocumentEntity(uuid, pickedName, savedPath);
+            
+            // Run database insertion on a background thread to prevent Main Thread crash
+            new Thread(() -> {
+                try {
+                    AppDatabaseProvider.getInstance(DocumentUploadActivity.this)
+                            .healthDocumentDao().insertDocument(doc);
+                            
+                    runOnUiThread(() -> {
+                        tvUploadStatus.setText("Document Saved Successfully ✅");
+                        // Finish completely and pop back to Health Resume screen
+                        new android.os.Handler().postDelayed(() -> finish(), 1000);
+                    });
+                } catch (Exception e) {
+                    runOnUiThread(() -> showError("Database Error: Could not save document profile. Ensure patient profile exists."));
                 }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                showError("Network error: " + t.getMessage());
-            }
-        });
-    }
-
-    private void launchValidation(String extractionPayload) {
-        android.content.Intent intent =
-                new android.content.Intent(this, ValidationActivity.class);
-        intent.putExtra(ValidationActivity.EXTRA_PAYLOAD,  extractionPayload);
-        intent.putExtra(ValidationActivity.EXTRA_DOC_NAME, pickedName);
-        startActivity(intent);
-        finish();
+            }).start();
+        } else {
+            showError("Failed to save the document locally.");
+        }
     }
 
     // ─── Error ────────────────────────────────────────────────────────────────

@@ -49,11 +49,15 @@ public class Step1bEmergencyContactsActivity extends AppCompatActivity {
     private void setupListeners() {
         btnNext.setOnClickListener(v -> {
             if (validateAndSave()) {
-                Intent intent = new Intent(this, Step2TriageQuizActivity.class);
+                Intent intent = new Intent(this, Step2MedicalHistoryActivity.class);
                 intent.putExtra("profile_data", profile);
                 startActivity(intent);
             }
         });
+    }
+
+    private boolean isValidPhone(String phone) {
+        return phone.matches("\\d{10}");
     }
 
     private boolean validateAndSave() {
@@ -68,15 +72,38 @@ public class Step1bEmergencyContactsActivity extends AppCompatActivity {
             Toast.makeText(this, "Please provide at least one primary emergency contact.", Toast.LENGTH_SHORT).show();
             return false;
         }
+        if (!isValidPhone(phone1)) {
+            etPhone1.setError("Phone number must be exactly 10 digits");
+            etPhone1.requestFocus();
+            return false;
+        }
 
         profile.getEmergencyContacts().clear();
         profile.addEmergencyContact(name1, phone1);
 
-        if (!TextUtils.isEmpty(name2) && !TextUtils.isEmpty(phone2)) {
+        if (!TextUtils.isEmpty(name2) || !TextUtils.isEmpty(phone2)) {
+            if (TextUtils.isEmpty(name2) || TextUtils.isEmpty(phone2)) {
+                Toast.makeText(this, "Please complete Contact 2 details (both name and phone).", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+            if (!isValidPhone(phone2)) {
+                etPhone2.setError("Phone number must be exactly 10 digits");
+                etPhone2.requestFocus();
+                return false;
+            }
             profile.addEmergencyContact(name2, phone2);
         }
 
-        if (!TextUtils.isEmpty(name3) && !TextUtils.isEmpty(phone3)) {
+        if (!TextUtils.isEmpty(name3) || !TextUtils.isEmpty(phone3)) {
+            if (TextUtils.isEmpty(name3) || TextUtils.isEmpty(phone3)) {
+                Toast.makeText(this, "Please complete Contact 3 details (both name and phone).", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+            if (!isValidPhone(phone3)) {
+                etPhone3.setError("Phone number must be exactly 10 digits");
+                etPhone3.requestFocus();
+                return false;
+            }
             profile.addEmergencyContact(name3, phone3);
         }
 

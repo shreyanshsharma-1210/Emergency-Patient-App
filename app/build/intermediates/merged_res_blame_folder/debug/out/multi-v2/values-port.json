@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.emergency.patient.app-mergeDebugResources-34:/values-port/values-port.xml",
+            "outputFile": "com.emergency.patient.app-mergeDebugResources-38:/values-port/values-port.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\ASUS\\.gradle\\caches\\8.13\\transforms\\e57d9eb613894faeb4158ee77fcafa79\\transformed\\appcompat-1.6.1\\res\\values-port\\values-port.xml",
+                    "source": "C:\\Users\\sw\\.gradle\\caches\\8.13\\transforms\\e57d9eb613894faeb4158ee77fcafa79\\transformed\\appcompat-1.6.1\\res\\values-port\\values-port.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

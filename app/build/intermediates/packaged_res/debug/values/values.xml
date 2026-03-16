@@ -77,6 +77,14 @@
     <style name="CircleAppearance">
         <item name="cornerSize">50%</item>
     </style>
+    <style name="MedicalHistoryQuestionContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:background">@color/color_surface</item>
+        <item name="android:padding">16dp</item>
+    </style>
     <style name="Theme.EmergencyPatient" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/color_primary_orange</item>
         <item name="colorPrimaryDark">@color/color_text_primary</item>
@@ -90,13 +98,5 @@
         <item name="android:windowBackground">@color/color_emergency_red</item>
         <item name="android:statusBarColor">@color/color_emergency_red</item>
         <item name="android:windowLightStatusBar">false</item>
-    </style>
-    <style name="TriageQuestionContainer">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:orientation">vertical</item>
-        <item name="android:layout_marginBottom">20dp</item>
-        <item name="android:background">@color/color_surface</item>
-        <item name="android:padding">16dp</item>
     </style>
 </resources>

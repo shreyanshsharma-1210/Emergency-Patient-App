@@ -12,6 +12,17 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.net.Uri;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import com.emergency.patient.db.AppDatabase;
+import com.emergency.patient.db.AppDatabaseProvider;
+import com.emergency.patient.db.PatientEntity;
+import com.google.android.material.imageview.ShapeableImageView;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,6 +41,8 @@ public class EditProfileActivity extends AppCompatActivity {
     private Spinner spinnerGender;
     private Button btnSave;
     private ImageButton btnClose;
+    private ShapeableImageView ivAvatar;
+    private ActivityResultLauncher<String> imagePickerLauncher;
 
     private long selectedDobMillis;
     private String[] genders = {"Male", "Female", "Other", "Prefer not to say"};
@@ -38,6 +51,15 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
+
+        imagePickerLauncher = registerForActivityResult(
+                new ActivityResultContracts.GetContent(),
+                uri -> {
+                    if (uri != null) {
+                        saveNewProfilePhoto(uri);
+                    }
+                }
+        );
 
         bindViews();
         setupGenderSpinner();
@@ -52,6 +74,7 @@ public class EditProfileActivity extends AppCompatActivity {
         spinnerGender = findViewById(R.id.spinner_edit_gender);
         btnSave = findViewById(R.id.btn_save_profile);
         btnClose = findViewById(R.id.btn_close_edit);
+        ivAvatar = findViewById(R.id.iv_edit_avatar);
     }
 
     private void setupGenderSpinner() {
@@ -68,16 +91,39 @@ public class EditProfileActivity extends AppCompatActivity {
             updateDobDisplay();
         }
 
-        SharedPreferences authPrefs = getSharedPreferences("patient_auth_prefs", MODE_PRIVATE);
-        String gender = authPrefs.getString("gender", "");
+        String currentGender = TokenManager.getGender(this);
+        int genderIndex = 0;
         for (int i = 0; i < genders.length; i++) {
-            if (genders[i].equalsIgnoreCase(gender)) {
-                spinnerGender.setSelection(i);
+            if (genders[i].equalsIgnoreCase(currentGender)) {
+                genderIndex = i;
                 break;
             }
         }
+        spinnerGender.setSelection(genderIndex);
 
-        tvBloodGroup.setText(authPrefs.getString("blood_group", "Unknown"));
+        tvBloodGroup.setText(TokenManager.getBloodGroup(this));
+        loadAvatar();
+    }
+
+    private void loadAvatar() {
+        new Thread(() -> {
+            String uuid = TokenManager.getUUID(this);
+            PatientEntity patient = AppDatabaseProvider.getInstance(this).patientDao().getPatient(uuid);
+            if (patient != null) {
+                runOnUiThread(() -> {
+                    if (patient.profilePhotoUri != null && !patient.profilePhotoUri.isEmpty()) {
+                        try {
+                            ivAvatar.setImageURI(Uri.parse(patient.profilePhotoUri));
+                            ivAvatar.setPadding(0, 0, 0, 0);
+                        } catch (Exception e) {
+                            ivAvatar.setImageResource(R.drawable.ic_blank_profile);
+                        }
+                    } else {
+                        ivAvatar.setImageResource(R.drawable.ic_blank_profile);
+                    }
+                });
+            }
+        }).start();
     }
 
     private void setupListeners() {
@@ -91,6 +137,50 @@ public class EditProfileActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        findViewById(R.id.btn_change_photo).setOnClickListener(v -> {
+            imagePickerLauncher.launch("image/*");
+        });
+    }
+
+    private void saveNewProfilePhoto(Uri sourceUri) {
+        new Thread(() -> {
+            try {
+                InputStream inputStream = getContentResolver().openInputStream(sourceUri);
+                if (inputStream == null) return;
+
+                File directory = getFilesDir();
+                File destFile = new File(directory, "profile_photo.jpg");
+
+                OutputStream outputStream = new FileOutputStream(destFile);
+                byte[] buffer = new byte[4096];
+                int length;
+                while ((length = inputStream.read(buffer)) > 0) {
+                    outputStream.write(buffer, 0, length);
+                }
+                outputStream.flush();
+                outputStream.close();
+                inputStream.close();
+
+                String persistentUri = Uri.fromFile(destFile).toString();
+                
+                // Update DB
+                String uuid = TokenManager.getUUID(this);
+                AppDatabase db = AppDatabaseProvider.getInstance(this);
+                PatientEntity patient = db.patientDao().getPatient(uuid);
+                if (patient != null) {
+                    patient.profilePhotoUri = persistentUri;
+                    db.patientDao().insertPatient(patient);
+                }
+
+                runOnUiThread(() -> {
+                    Toast.makeText(this, "Photo updated", Toast.LENGTH_SHORT).show();
+                    loadAvatar();
+                });
+            } catch (Exception e) {
+                runOnUiThread(() -> Toast.makeText(this, "Failed to update photo", Toast.LENGTH_SHORT).show());
+            }
+        }).start();
     }
 
     private void showDatePicker() {
@@ -116,14 +206,26 @@ public class EditProfileActivity extends AppCompatActivity {
             return false;
         }
 
+        if (selectedDobMillis == 0) {
+            Toast.makeText(this, "Please select Date of Birth", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        // Validate minimum age of 13 years
+        Calendar dobCalendar = Calendar.getInstance();
+        dobCalendar.setTimeInMillis(selectedDobMillis);
+        Calendar minAgeCalendar = Calendar.getInstance();
+        minAgeCalendar.add(Calendar.YEAR, -13);
+        if (dobCalendar.after(minAgeCalendar)) {
+            Toast.makeText(this, "You must be at least 13 years old.", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
         TokenManager.savePatientName(this, name);
         TokenManager.saveDOB(this, selectedDobMillis);
         
         String gender = spinnerGender.getSelectedItem().toString();
-        getSharedPreferences("patient_auth_prefs", MODE_PRIVATE)
-                .edit()
-                .putString("gender", gender)
-                .apply();
+        TokenManager.saveGender(this, gender);
 
         return true;
     }

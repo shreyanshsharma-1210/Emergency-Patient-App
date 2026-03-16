@@ -74,18 +74,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/color_text_primary"/>
 
-            <TextView
-                android:id="@+id/tv_quick_condition"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Type 1 Diabetes"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/color_primary_orange"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="4dp"
-                android:background="@drawable/bg_condition_chip"
-                android:layout_marginTop="8dp"/>
+
         </LinearLayout>
 
         <View

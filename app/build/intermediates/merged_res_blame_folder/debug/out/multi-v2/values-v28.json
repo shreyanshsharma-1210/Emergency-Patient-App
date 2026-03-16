@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.emergency.patient.app-mergeDebugResources-34:/values-v28/values-v28.xml",
+            "outputFile": "com.emergency.patient.app-mergeDebugResources-38:/values-v28/values-v28.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\ASUS\\.gradle\\caches\\8.13\\transforms\\e50bbf697fdb6da4111385633e30a4c7\\transformed\\material-1.9.0\\res\\values-v28\\values-v28.xml",
+                    "source": "C:\\Users\\sw\\.gradle\\caches\\8.13\\transforms\\e50bbf697fdb6da4111385633e30a4c7\\transformed\\material-1.9.0\\res\\values-v28\\values-v28.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\ASUS\\.gradle\\caches\\8.13\\transforms\\e57d9eb613894faeb4158ee77fcafa79\\transformed\\appcompat-1.6.1\\res\\values-v28\\values-v28.xml",
+                    "source": "C:\\Users\\sw\\.gradle\\caches\\8.13\\transforms\\e57d9eb613894faeb4158ee77fcafa79\\transformed\\appcompat-1.6.1\\res\\values-v28\\values-v28.xml",
                     "from": {
                         "startLines": "2,3,4,8",
                         "startColumns": "4,4,4,4",

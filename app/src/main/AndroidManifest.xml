@@ -61,7 +61,7 @@
             android:exported="false"/>
 
         <activity
-            android:name=".activities.Step2TriageQuizActivity"
+            android:name=".activities.Step2MedicalHistoryActivity"
             android:exported="false"/>
 
         <activity
@@ -137,6 +137,17 @@
         <receiver
             android:name=".services.NotificationDismissReceiver"
             android:exported="false"/>
+
+        <!-- ── File Providers ─────────────────────────────────────────────── -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
 
         <!-- ── Metadata ───────────────────────────────────────────────────── -->
 

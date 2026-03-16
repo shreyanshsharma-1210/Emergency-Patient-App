@@ -110,7 +110,7 @@
             android:name="com.emergency.patient.activities.Step1bEmergencyContactsActivity"
             android:exported="false" />
         <activity
-            android:name="com.emergency.patient.activities.Step2TriageQuizActivity"
+            android:name="com.emergency.patient.activities.Step2MedicalHistoryActivity"
             android:exported="false" />
         <activity
             android:name="com.emergency.patient.activities.Step3VerifyResumeActivity"
@@ -187,6 +187,17 @@
             android:name="com.emergency.patient.services.NotificationDismissReceiver"
             android:exported="false" />
 
+        <!-- ── File Providers ─────────────────────────────────────────────── -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.emergency.patient.provider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
         <!-- ── Metadata ───────────────────────────────────────────────────── -->
 
 
@@ -261,6 +272,10 @@
                 android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
                 android:value="com.google.firebase.components.ComponentRegistrar" />
         </service>
+        <service
+            android:name="androidx.room.MultiInstanceInvalidationService"
+            android:directBootAware="true"
+            android:exported="false" />
 
         <activity
             android:name="com.google.android.gms.common.api.GoogleApiActivity"

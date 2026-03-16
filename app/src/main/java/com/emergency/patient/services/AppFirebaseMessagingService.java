@@ -12,7 +12,6 @@ import androidx.core.app.NotificationCompat;
 
 import com.emergency.patient.R;
 import com.emergency.patient.activities.DashboardActivity;
-import com.emergency.patient.activities.ValidationActivity;
 import com.emergency.patient.network.FcmTokenSyncManager;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -59,11 +58,6 @@ public class AppFirebaseMessagingService extends FirebaseMessagingService {
 
         Log.d(TAG, "FCM received: type=" + type + " id=" + processingId + " status=" + status);
 
-        if ("extraction_complete".equals(type) && "success".equals(status)) {
-            showExtractionNotification(processingId, payload);
-            return;
-        }
-
         // Fallback for non-extraction pushes (data payload based).
         if (!TextUtils.isEmpty(title) || !TextUtils.isEmpty(body)) {
             showGenericNotification(
@@ -83,35 +77,6 @@ public class AppFirebaseMessagingService extends FirebaseMessagingService {
     }
 
     // ─── Notification ─────────────────────────────────────────────────────────
-
-    private void showExtractionNotification(String processingId, String payload) {
-        ensureChannel();
-
-        // Tap → opens ValidationActivity with extraction data
-        Intent intent = new Intent(this, ValidationActivity.class);
-        intent.putExtra(ValidationActivity.EXTRA_PAYLOAD, payload);
-        intent.putExtra(ValidationActivity.EXTRA_DOC_NAME, "Medical Report");
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-        PendingIntent pendingIntent = PendingIntent.getActivity(
-                this, 0, intent,
-                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_sos_cross)
-                .setContentTitle("Medical Report Processed ✅")
-                .setContentText("Tap to review and approve the extracted data.")
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setAutoCancel(true)
-                .setContentIntent(pendingIntent);
-
-        NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        int notificationId = TextUtils.isEmpty(processingId)
-                ? NOTIFICATION_ID
-                : Math.abs(processingId.hashCode());
-        if (nm != null)
-            nm.notify(notificationId, builder.build());
-    }
 
     private void showGenericNotification(String title, String body) {
         ensureChannel();

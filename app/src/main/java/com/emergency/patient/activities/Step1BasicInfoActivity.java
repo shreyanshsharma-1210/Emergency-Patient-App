@@ -16,6 +16,12 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import com.emergency.patient.db.AppDatabase;
+import com.emergency.patient.db.AppDatabaseProvider;
+import com.emergency.patient.db.PatientEntity;
+import com.emergency.patient.security.TokenManager;
+
+
 
 import com.emergency.patient.R;
 import com.emergency.patient.models.PatientProfile;
@@ -46,6 +52,15 @@ public class Step1BasicInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Check if onboarding is already complete (Check Room first, fallback to TokenManager)
+        PatientEntity patient = AppDatabaseProvider.getInstance(this).patientDao().getFirstPatient();
+        if ((patient != null && patient.isOnboardingComplete) || TokenManager.isOnboardingComplete(this)) {
+            startActivity(new Intent(this, DashboardActivity.class));
+            finish();
+            return;
+        }
+
         setContentView(R.layout.activity_step1_basic_info);
 
         bindViews();
@@ -116,6 +131,15 @@ public class Step1BasicInfoActivity extends AppCompatActivity {
         }
         if (selectedDobMillis == 0) {
             Toast.makeText(this, "Please select Date of Birth", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        // Validate minimum age of 13 years
+        Calendar dobCalendar = Calendar.getInstance();
+        dobCalendar.setTimeInMillis(selectedDobMillis);
+        Calendar minAgeCalendar = Calendar.getInstance();
+        minAgeCalendar.add(Calendar.YEAR, -13);
+        if (dobCalendar.after(minAgeCalendar)) {
+            Toast.makeText(this, "You must be at least 13 years old to register.", Toast.LENGTH_LONG).show();
             return false;
         }
         if (spinnerGender.getSelectedItemPosition() == 0) {

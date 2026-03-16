@@ -20,7 +20,8 @@ import com.emergency.patient.R;
 import com.emergency.patient.network.SocketManager;
 import com.emergency.patient.security.TokenManager;
 import com.emergency.patient.utils.QrGenerator;
-import com.google.android.material.snackbar.Snackbar;
+import com.emergency.patient.db.AppDatabaseProvider;
+import com.emergency.patient.db.EmergencyContactEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,14 +48,16 @@ public class EmergencyActiveActivity extends AppCompatActivity {
     private TextView tvBannerText, tvChannelInfo;
     private Button btnCancelSos, btn102, btnCallAll;
     private RecyclerView rvStatusFeed;
-    private ImageView ivQrEmergency;
-    private View vBannerDot, vFeedDot;
+    private ImageView ivQrEmergency, ivQrFullscreen;
+    private View vBannerDot, vFeedDot, qrFullscreenOverlay;
 
     // ─── Data ─────────────────────────────────────────────────────────────────
     private double lat, lng;
     private String dispatchChannel;
     private final List<StatusFeedItem> feedItems = new ArrayList<>();
-    private final List<ContactItem> contacts = new ArrayList<>();
+    // Use the real entity to hold fetched contacts
+    private final List<EmergencyContactEntity> emergencyContacts = new ArrayList<>();
+    private android.graphics.Bitmap qrBitmap;
 
     // ─── Lifecycle ────────────────────────────────────────────────────────────
 
@@ -98,19 +101,9 @@ public class EmergencyActiveActivity extends AppCompatActivity {
         llContactsList = findViewById(R.id.ll_contacts);
         btnCallAll     = findViewById(R.id.btn_call_all);
         ivQrEmergency  = findViewById(R.id.iv_qr_emergency);
-        vBannerDot     = findViewById(R.id.v_banner_dot);
         vFeedDot       = findViewById(R.id.v_feed_dot);
-
-        // Dismiss banner × icon
-        View btnBannerClose = findViewById(R.id.btn_banner_close);
-        if (btnBannerClose != null) {
-            btnBannerClose.setOnClickListener(v -> {
-                bannerLayout.setVisibility(View.GONE);
-                Snackbar.make(findViewById(android.R.id.content),
-                        "SOS still active. Tap CANCEL SOS to stop.",
-                        Snackbar.LENGTH_LONG).show();
-            });
-        }
+        qrFullscreenOverlay = findViewById(R.id.fl_qr_fullscreen_emergency);
+        ivQrFullscreen      = findViewById(R.id.iv_qr_fullscreen_emergency);
     }
 
     // ─── Emergency Banner ─────────────────────────────────────────────────────
@@ -125,7 +118,6 @@ public class EmergencyActiveActivity extends AppCompatActivity {
 
     private void startPulsingAnimations() {
         Animation pulse = AnimationUtils.loadAnimation(this, R.anim.pulse_alpha);
-        if (vBannerDot != null) vBannerDot.startAnimation(pulse);
         if (vFeedDot != null) vFeedDot.startAnimation(pulse);
     }
 
@@ -145,36 +137,62 @@ public class EmergencyActiveActivity extends AppCompatActivity {
     // ─── Contact List ─────────────────────────────────────────────────────────
 
     private void setupContactList() {
-        // TODO: Load real contacts from TokenManager or DB
-        contacts.add(new ContactItem("Jane Doe", "Spouse", "555-0199"));
-        contacts.add(new ContactItem("John Smith", "Father", "555-0122"));
+        String uuid = TokenManager.getUUID(this);
+        
+        // Fetch real contacts from database on background thread
+        new Thread(() -> {
+            List<EmergencyContactEntity> dbContacts = AppDatabaseProvider.getInstance(this)
+                    .emergencyContactDao().getContactsForPatient(uuid);
+                    
+            runOnUiThread(() -> {
+                emergencyContacts.clear();
+                if (dbContacts != null && !dbContacts.isEmpty()) {
+                    emergencyContacts.addAll(dbContacts);
+                }
+                populateContactsList();
+            });
+        }).start();
 
-        for (ContactItem contact : contacts) {
+        btnCallAll.setOnClickListener(v -> callAllContacts());
+    }
+
+    private void populateContactsList() {
+        llContactsList.removeAllViews();
+        
+        if (emergencyContacts.isEmpty()) {
+            TextView tvEmpty = new TextView(this);
+            tvEmpty.setText("No emergency contacts saved.");
+            tvEmpty.setTextColor(getResources().getColor(R.color.color_text_secondary));
+            tvEmpty.setTextSize(14);
+            llContactsList.addView(tvEmpty);
+            return;
+        }
+
+        for (EmergencyContactEntity contact : emergencyContacts) {
             View itemView = getLayoutInflater().inflate(R.layout.item_contact_row, llContactsList, false);
             TextView tvName = itemView.findViewById(R.id.tv_contact_name);
             TextView tvTag  = itemView.findViewById(R.id.tv_relationship_tag);
             View btnCall    = itemView.findViewById(R.id.btn_call_contact);
 
             tvName.setText(contact.name);
-            tvTag.setText(contact.relationship);
-            btnCall.setOnClickListener(v -> triggerCall(contact.phone));
+            tvTag.setText("Emergency Contact"); // Using default tag since relationship isn't stored
+            btnCall.setOnClickListener(v -> triggerCall(contact.phoneNumber));
 
             llContactsList.addView(itemView);
         }
-
-        btnCallAll.setOnClickListener(v -> callAllContacts());
     }
 
     private void triggerCall(String phoneNumber) {
+        if (phoneNumber == null || phoneNumber.isEmpty()) return;
         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
         startActivity(intent);
     }
 
     private void callAllContacts() {
-        if (contacts.isEmpty()) return;
+        if (emergencyContacts.isEmpty()) return;
         // Mock sequential dialer — in a real app this would monitor call state
         // but for MVP we pre-dial the first one
-        triggerCall(contacts.get(0).phone);
+        triggerCall(emergencyContacts.get(0).phoneNumber);
     }
 
     // ─── QR Code ──────────────────────────────────────────────────────────────
@@ -182,8 +200,17 @@ public class EmergencyActiveActivity extends AppCompatActivity {
     private void setupQrCode() {
         try {
             String uuid = TokenManager.getUUID(this);
-            android.graphics.Bitmap qr = QrGenerator.generate(uuid, 512);
-            ivQrEmergency.setImageBitmap(qr);
+            qrBitmap = QrGenerator.generate(uuid, 512);
+            ivQrEmergency.setImageBitmap(qrBitmap);
+
+            ivQrEmergency.setOnClickListener(v -> {
+                if (qrBitmap != null) {
+                    ivQrFullscreen.setImageBitmap(qrBitmap);
+                    qrFullscreenOverlay.setVisibility(View.VISIBLE);
+                }
+            });
+
+            qrFullscreenOverlay.setOnClickListener(v -> qrFullscreenOverlay.setVisibility(View.GONE));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -229,19 +256,6 @@ public class EmergencyActiveActivity extends AppCompatActivity {
         }
     }
 
-    // ─── Contact Item Model ────────────────────────────────────────────────────
-
-    public static class ContactItem {
-        public final String name;
-        public final String relationship;
-        public final String phone;
-
-        public ContactItem(String name, String relationship, String phone) {
-            this.name         = name;
-            this.relationship = relationship;
-            this.phone        = phone;
-        }
-    }
 
     // ─── Status Feed Adapter ───────────────────────────────────────────────────
 

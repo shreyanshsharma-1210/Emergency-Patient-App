@@ -15,8 +15,9 @@
         android:paddingHorizontal="16dp">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Health Resume"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -62,14 +63,49 @@
                     android:textColor="@color/color_text_primary"/>
 
                 <TextView
+                    android:id="@+id/tv_resume_dob_gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DOB: --  •  Gender: --"
+                    android:textSize="14sp"
+                    android:textColor="@color/color_text_secondary"
+                    android:layout_marginTop="2dp"/>
+
+                <TextView
                     android:id="@+id/tv_resume_blood_group"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Blood Group: --"
                     android:textSize="14sp"
                     android:textColor="@color/color_emergency_red"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="2dp"
                     android:textStyle="bold"/>
+                    
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#1A000000"
+                    android:layout_marginVertical="12dp"/>
+                    
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Emergency Contacts"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/color_text_secondary"
+                    android:layout_marginBottom="4dp"/>
+
+                <TextView
+                    android:id="@+id/tv_resume_contacts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No emergency contacts found."
+                    android:textSize="14sp"
+                    android:textColor="@color/color_text_primary"
+                    android:layout_marginBottom="8dp"
+                    android:lineSpacingExtra="4dp"/>
+
 
                 <View
                     android:layout_width="match_parent"
@@ -80,7 +116,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Critical Conditions &amp; Triage Details"
+                    android:text="Critical Conditions &amp; Medical History"
                     android:textSize="12sp"
                     android:textStyle="bold"
                     android:textColor="@color/color_text_secondary"
@@ -95,6 +131,26 @@
                     android:textColor="@color/color_text_primary"
                     android:lineSpacingExtra="4dp"/>
             </LinearLayout>
+
+            <!-- Document List Section -->
+            <TextView
+                android:id="@+id/tv_header_documents"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Uploaded Health Records"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/color_text_secondary"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:id="@+id/ll_documents_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"/>
 
             <!-- Document Upload Section -->
             <LinearLayout
@@ -113,6 +169,7 @@
                     android:layout_marginBottom="16dp"/>
 
                 <TextView
+                    android:id="@+id/tv_empty_records"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="No documents uploaded yet"
@@ -124,22 +181,23 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Upload medical reports for AI analysis."
+                    android:text="Upload medical reports for your records."
                     android:textSize="13sp"
                     android:textColor="@color/color_text_secondary"
                     android:gravity="center"
                     android:layout_marginBottom="24dp"/>
 
-                <Button
-                    android:id="@+id/btn_upload_document"
-                    android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:text="+ UPLOAD NEW DOCUMENT"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/white"
-                    android:backgroundTint="@color/color_primary_orange"/>
             </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_upload_document"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:text="+ UPLOAD NEW DOCUMENT"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/color_primary_orange"/>
 
         </LinearLayout>
     </ScrollView>

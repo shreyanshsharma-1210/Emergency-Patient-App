@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PatientProfile implements Serializable {
-    
+
     // Demographic Data (Step 1)
     private String fullName;
     private long dobMillis;
@@ -13,21 +13,13 @@ public class PatientProfile implements Serializable {
     private String bloodGroup;
     private String profilePhotoUri;
 
-    // Triage Quiz Data (Step 2)
-    private boolean hasSevereAllergies;
-    private String severeAllergiesDetails;
-    
-    private boolean hasCardioIssues;
-    private String cardioIssuesDetails;
-    
-    private boolean hasChronicConditions;
-    private String chronicConditionsDetails;
-    
-    private boolean hasImplants;
-    private String implantsDetails;
-    
-    private boolean hasCriticalMeds;
-    private String criticalMedsDetails;
+    // Medical History Quiz Data (Step 2 - formerly Triage)
+    // Each field stores the chosen option label, e.g. "A", "B", or "Other: <text>"
+    private String pastMedicalDiagnosis;
+    private String pharmacologicalStatus;
+    private String clinicalAllergies;
+    private String hereditaryConditions;
+    private String lifestyleFactor;
 
     // Emergency Contacts (Step 1b)
     private List<EmergencyContact> emergencyContacts = new ArrayList<>();
@@ -54,7 +46,7 @@ public class PatientProfile implements Serializable {
         }
     }
 
-    // Getters and Setters for Demographics
+    // Demographics
     public String getFullName() { return fullName; }
     public void setFullName(String fullName) { this.fullName = fullName; }
 
@@ -70,55 +62,34 @@ public class PatientProfile implements Serializable {
     public String getProfilePhotoUri() { return profilePhotoUri; }
     public void setProfilePhotoUri(String profilePhotoUri) { this.profilePhotoUri = profilePhotoUri; }
 
-    // Getters and Setters for Triage
-    public boolean isHasSevereAllergies() { return hasSevereAllergies; }
-    public void setHasSevereAllergies(boolean hasSevereAllergies) { this.hasSevereAllergies = hasSevereAllergies; }
+    // Medical History
+    public String getPastMedicalDiagnosis() { return pastMedicalDiagnosis; }
+    public void setPastMedicalDiagnosis(String pastMedicalDiagnosis) { this.pastMedicalDiagnosis = pastMedicalDiagnosis; }
 
-    public String getSevereAllergiesDetails() { return severeAllergiesDetails; }
-    public void setSevereAllergiesDetails(String severeAllergiesDetails) { this.severeAllergiesDetails = severeAllergiesDetails; }
+    public String getPharmacologicalStatus() { return pharmacologicalStatus; }
+    public void setPharmacologicalStatus(String pharmacologicalStatus) { this.pharmacologicalStatus = pharmacologicalStatus; }
 
-    public boolean isHasCardioIssues() { return hasCardioIssues; }
-    public void setHasCardioIssues(boolean hasCardioIssues) { this.hasCardioIssues = hasCardioIssues; }
+    public String getClinicalAllergies() { return clinicalAllergies; }
+    public void setClinicalAllergies(String clinicalAllergies) { this.clinicalAllergies = clinicalAllergies; }
 
-    public String getCardioIssuesDetails() { return cardioIssuesDetails; }
-    public void setCardioIssuesDetails(String cardioIssuesDetails) { this.cardioIssuesDetails = cardioIssuesDetails; }
+    public String getHereditaryConditions() { return hereditaryConditions; }
+    public void setHereditaryConditions(String hereditaryConditions) { this.hereditaryConditions = hereditaryConditions; }
 
-    public boolean isHasChronicConditions() { return hasChronicConditions; }
-    public void setHasChronicConditions(boolean hasChronicConditions) { this.hasChronicConditions = hasChronicConditions; }
+    public String getLifestyleFactor() { return lifestyleFactor; }
+    public void setLifestyleFactor(String lifestyleFactor) { this.lifestyleFactor = lifestyleFactor; }
 
-    public String getChronicConditionsDetails() { return chronicConditionsDetails; }
-    public void setChronicConditionsDetails(String chronicConditionsDetails) { this.chronicConditionsDetails = chronicConditionsDetails; }
-
-    public boolean isHasImplants() { return hasImplants; }
-    public void setHasImplants(boolean hasImplants) { this.hasImplants = hasImplants; }
-
-    public String getImplantsDetails() { return implantsDetails; }
-    public void setImplantsDetails(String implantsDetails) { this.implantsDetails = implantsDetails; }
-
-    public boolean isHasCriticalMeds() { return hasCriticalMeds; }
-    public void setHasCriticalMeds(boolean hasCriticalMeds) { this.hasCriticalMeds = hasCriticalMeds; }
-
-    public String getCriticalMedsDetails() { return criticalMedsDetails; }
-    public void setCriticalMedsDetails(String criticalMedsDetails) { this.criticalMedsDetails = criticalMedsDetails; }
-
-    // Utility to get a flattened list of active conditions for display
+    // Utility: flat list for display
     public List<String> getActiveConditionsList() {
         List<String> conditions = new ArrayList<>();
-        if (hasSevereAllergies && severeAllergiesDetails != null && !severeAllergiesDetails.isEmpty()) {
-            conditions.add("Allergies: " + severeAllergiesDetails);
-        }
-        if (hasCardioIssues && cardioIssuesDetails != null && !cardioIssuesDetails.isEmpty()) {
-            conditions.add("Cardio: " + cardioIssuesDetails);
-        }
-        if (hasChronicConditions && chronicConditionsDetails != null && !chronicConditionsDetails.isEmpty()) {
-            conditions.add("Chronic: " + chronicConditionsDetails);
-        }
-        if (hasImplants && implantsDetails != null && !implantsDetails.isEmpty()) {
-            conditions.add("Implants: " + implantsDetails);
-        }
-        if (hasCriticalMeds && criticalMedsDetails != null && !criticalMedsDetails.isEmpty()) {
-            conditions.add("Meds: " + criticalMedsDetails);
-        }
+        if (pastMedicalDiagnosis != null && !pastMedicalDiagnosis.isEmpty())
+            conditions.add("Past Diagnosis: " + pastMedicalDiagnosis);
+
+        if (clinicalAllergies != null && !clinicalAllergies.isEmpty())
+            conditions.add("Allergies: " + clinicalAllergies);
+        if (hereditaryConditions != null && !hereditaryConditions.isEmpty())
+            conditions.add("Family History: " + hereditaryConditions);
+        if (lifestyleFactor != null && !lifestyleFactor.isEmpty())
+            conditions.add("Lifestyle: " + lifestyleFactor);
         return conditions;
     }
 }

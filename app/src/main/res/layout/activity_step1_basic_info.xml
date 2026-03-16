@@ -126,7 +126,7 @@
         android:id="@+id/btn_next_step1"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:text="Next -> Triage"
+        android:text="Add emergency contacts"
         android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="@android:color/white"
